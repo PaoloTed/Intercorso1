@@ -64,14 +64,12 @@ namespace Intercorso1 {
         virtual void Traverse(TraverseFun) const = 0;
         //template<typename Accumulator>
         template<typename Accumulator>
-            // using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
+        // using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
         using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
 
         template<typename Accumulator>
         // type Fold(arguments) specifiers;
         inline Accumulator Fold(FoldFun<Accumulator>, Accumulator) const;
-
-
 
         /* ************************************************************************ */
 
