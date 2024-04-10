@@ -67,16 +67,16 @@ namespace Intercorso1 {
         inline virtual bool InsertAll(MappableContainer<Data> &&);
 
         // type RemoveAll(argument) specifiers; // From TraversableContainer; True if all are removed
-        inline bool RemoveAll(TraversableContainer<Data> &);
+        inline virtual bool RemoveAll(TraversableContainer<Data> &);
 
         // type InsertSome(argument) specifiers; // Copy of the value; From TraversableContainer; True if some is inserted
-        inline bool InsertSome(const TraversableContainer<Data> &);
+        inline virtual bool InsertSome(const TraversableContainer<Data> &);
 
         // type InsertSome(argument) specifiers; // Move of the value; From MappableContainer; True if some is inserted
-        inline bool InsertSome(MappableContainer<Data> &&);
+        inline virtual bool InsertSome(MappableContainer<Data> &&);
 
         // type RemoveSome(argument) specifiers; // From TraversableContainer; True if some is removed
-        inline bool RemoveSome(TraversableContainer<Data> &);
+        inline virtual bool RemoveSome(TraversableContainer<Data> &);
 
     };
 

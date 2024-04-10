@@ -25,11 +25,13 @@ namespace Intercorso1 {
     protected:
 
         // ...
+        using Container::size;
 
     public:
 
         // Destructor
         // ~LinearContainer() specifiers
+        ~LinearContainer() = default;
 
         /* ************************************************************************ */
 
@@ -46,6 +48,7 @@ namespace Intercorso1 {
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types is possible.
         LinearContainer &operator==(const LinearContainer &) const = delete;
+
         // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
         LinearContainer &operator!=(const LinearContainer &) const = delete;
 
@@ -54,45 +57,56 @@ namespace Intercorso1 {
         // Specific member functions
 
         // type operator[](argument) specifiers; // (non-mutable version; concrete function must throw std::out_of_range when out of range)
-        virtual Data& operator[](const unsigned long)const override = 0;
+        virtual Data &operator[](const unsigned long) const = 0;
+
         // type operator[](argument) specifiers; // (mutable version; concrete function must throw std::out_of_range when out of range)
-        virtual Data& operator[](const unsigned long) override = 0;
+        virtual Data &operator[](const unsigned long) = 0;
+
         // type Front() specifiers; // (non-mutable version; concrete function must throw std::length_error when empty)
-        virtual Data& Front() const override = 0;
+        virtual Data &Front() const = 0;
+
         // type Front() specifiers; // (mutable version; concrete function must throw std::length_error when empty)
-        virtual Data& Front() override = 0;
+        virtual Data &Front() = 0;
+
         // type Back() specifiers; // (non-mutable version; concrete function must throw std::length_error when empty)
-        virtual Data& Back() const override = 0;
+        virtual Data &Back() const = 0;
+
         // type Back() specifiers; // (mutable version; concrete function must throw std::length_error when empty)
-        virtual Data& Back() override = 0;
+        virtual Data &Back() = 0;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from TraversableContainer)
 
         // using typename TraversableContainer<Data>::TraverseFun;
+        using typename TraversableContainer<Data>::TraverseFun;
 
         // type Traverse(argument) specifiers; // Override TraversableContainer member
+        void Traverse(TraverseFun) const override;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from PreOrderTraversableContainer)
 
         // type PreOrderTraverse(argument) specifiers; // Override PreOrderTraversableContainer member
+        void PreOrderTraverse(TraverseFun) const override;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from PostOrderTraversableContainer)
 
         // type PostOrderTraverse(argument) specifiers; // Override PostOrderTraversableContainer member
+        void PostOrderTraverse(TraverseFun) const override;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from MappableContainer)
 
         // using typename MappableContainer<Data>::MapFun;
+        using typename MappableContainer<Data>::MapFun;
 
         // type Map(argument) specifiers; // Override MappableContainer member
+
 
         /* ************************************************************************ */
 

@@ -25,6 +25,7 @@ namespace Intercorso1 {
 
         // Destructor
         // ~TestableContainer() specifiers
+        virtual ~TestableContainer() = default;
 
         /* ************************************************************************ */
 

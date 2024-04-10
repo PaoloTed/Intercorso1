@@ -13,7 +13,7 @@ namespace Intercorso1 {
     bool DictionaryContainer<Data>::InsertAll(const TraversableContainer<Data> &container) {
         bool inserted = true;
         container.Traverse(
-                [&](const Data &data) {
+                [this,&inserted](const Data &data) {
                     inserted = Insert(data) && inserted;//Controllo AND tra il valore di inserted e il risultato della funzione Insert
                 }
         );
@@ -25,8 +25,8 @@ namespace Intercorso1 {
     bool DictionaryContainer<Data>::InsertAll(MappableContainer<Data> &&container) {
         bool inserted = true;
         container.Map(
-                [&](const Data &data) {
-                    inserted = Insert(std::move(data)) && inserted;//Controllo AND tra il valore di inserted e il risultato della funzione Insert
+                [this,&inserted](const Data &data) {
+                    inserted = Insert(std::move(data)) && inserted;
                 }
         );
         return inserted;
@@ -37,29 +37,48 @@ namespace Intercorso1 {
     bool DictionaryContainer<Data>::RemoveAll(TraversableContainer<Data> &container) {
         bool removed = true;
         container.Map(
-                [&](const Data &data) {
-                    removed = Remove(data) && removed;//Controllo AND tra il valore di removed e il risultato della funzione Remove
+                [this,&removed](const Data &data) {
+                    removed = Remove(data) && removed;
                 }
         );
         return removed;
     }
 
     // type InsertSome(argument) specifiers; // Copy of the value; From TraversableContainer; True if some is inserted
-    //TODO : Implementare, chiedere alla prof che si intende per some
     template<typename Data>
     bool DictionaryContainer<Data>::InsertSome(const TraversableContainer<Data> &container) {
-
+        bool inserted = false;
+        container.Traverse(
+                [this,&inserted](const Data &data) {
+                    inserted = Insert(data) || inserted;//Controllo OR tra il valore di inserted e il risultato della funzione Insert
+                }
+        );
+        return inserted;
     }
 
     // type InsertSome(argument) specifiers; // Move of the value; From MappableContainer; True if some is inserted
-    //TODO : Implementare, chiedere alla prof che si intende per some
     template<typename Data>
-    bool DictionaryContainer<Data>::InsertSome(MappableContainer<Data> &&container) {}
+    bool DictionaryContainer<Data>::InsertSome(MappableContainer<Data> &&container) {
+        bool inserted = false;
+        container.Map(
+                [this,&inserted](const Data &data) {
+                    inserted = Insert(std::move(data)) || inserted;
+                }
+        );
+        return inserted;
+    }
 
     // type RemoveSome(argument) specifiers; // From TraversableContainer; True if some is removed
-    //TODO : Implementare, chiedere alla prof che si intende per some
     template<typename Data>
-    bool DictionaryContainer<Data>::RemoveSome(TraversableContainer<Data> &container) {}
+    bool DictionaryContainer<Data>::RemoveSome(TraversableContainer<Data> &container) {
+        bool removed = false;
+        container.Map(
+                [this,&removed](const Data &data) {
+                    removed = Remove(data) || removed;
+                }
+        );
+        return removed;
+    }
 
 /* ************************************************************************** */
 
