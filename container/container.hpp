@@ -13,11 +13,12 @@ namespace Intercorso1 {
     private:
 
         // ...
-        unsigned long size = 0;//intero senza segno
 
     protected:
 
         // ...
+        unsigned long size {0};//intero senza segno
+
 
         /* ************************************************************************ */
 
@@ -51,10 +52,10 @@ namespace Intercorso1 {
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator==(const Container &) const = delete;
+        bool operator==(const Container &) const noexcept= delete;
 
         // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator!=(const Container &) const = delete;
+        bool operator!=(const Container &) const noexcept = delete;
 
         /* ************************************************************************ */
 
@@ -70,7 +71,7 @@ namespace Intercorso1 {
 
 /* ************************************************************************** */
 
-    class ClearableContainer : public Container {
+    class ClearableContainer : virtual public Container {
         // Must extend Container
 
     private:
@@ -86,7 +87,7 @@ namespace Intercorso1 {
         // Destructor
         // ~ClearableContainer() specifiers
         // ~ClearableContainer() = default;
-        ~ClearableContainer() = default;
+        virtual ~ClearableContainer() = default;
 
         /* ************************************************************************ */
 
@@ -102,10 +103,10 @@ namespace Intercorso1 {
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator==(const ClearableContainer &) const = delete;
+        bool operator==(const ClearableContainer &) const noexcept = delete;
 
         // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator!=(const ClearableContainer &) const = delete;
+        bool operator!=(const ClearableContainer &) const noexcept = delete;
 
         /* ************************************************************************ */
 
@@ -117,8 +118,7 @@ namespace Intercorso1 {
     };
 
 /* ************************************************************************** */
-
-    class ResizableContainer : public ClearableContainer {
+    class ResizableContainer : virtual public ClearableContainer {
         // Must extend ClearableContainer
 
     private:
@@ -133,6 +133,7 @@ namespace Intercorso1 {
 
         // Destructor
         // ~ResizableContainer() specifiers
+        virtual ~ResizableContainer() = default;
 
         /* ************************************************************************ */
 

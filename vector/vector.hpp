@@ -134,6 +134,7 @@ namespace Intercorso1 {
     protected:
 
         // using Container::???;
+        using Container::size;
 
         // ...
 
@@ -147,11 +148,11 @@ namespace Intercorso1 {
 
         // Specific constructors
         // SortableVector(argument) specifiers; // A vector with a given initial dimension
-        SortableVector(const unsigned long);
+        SortableVector(const unsigned long );
         // SortableVector(argument) specifiers; // A vector obtained from a TraversableContainer
         SortableVector(const TraversableContainer<Data> &);
         // SortableVector(argument) specifiers; // A vector obtained from a MappableContainer
-        SortableVector(const MappableContainer<Data> &&);
+        SortableVector( MappableContainer<Data> &&);
 
         /* ************************************************************************ */
 

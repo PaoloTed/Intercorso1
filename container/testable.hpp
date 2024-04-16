@@ -41,17 +41,17 @@ namespace Intercorso1 {
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator==(const TestableContainer &) const = delete;
+        bool operator==(const TestableContainer &) const noexcept = delete;
 
         // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator!=(const TestableContainer &) const = delete;
+        bool operator!=(const TestableContainer &) const noexcept = delete;
 
         /* ************************************************************************ */
 
         // Specific member function
 
         // type Exists(argument) specifiers; // (concrete function should not throw exceptions)
-        virtual bool Exists(const Data&) const = 0;
+        virtual bool Exists(const Data&) const noexcept = 0;
     };
 
 /* ************************************************************************** */

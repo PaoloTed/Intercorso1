@@ -58,14 +58,14 @@ namespace Intercorso1 {
 
         using MapFun = std::function<void(Data &)>;
 
-        void Map(MapFun);
+        void Map(const MapFun) = 0;
 
     };
 
 /* ************************************************************************** */
 
     template<typename Data>
-    class PreOrderMappableContainer : public MappableContainer<Data>, public PreOrderTraversableContainer<Data>
+    class PreOrderMappableContainer : virtual public MappableContainer<Data>,  virtual public PreOrderTraversableContainer<Data>{
         // Must extend MappableContainer<Data>,
         //             PreOrderTraversableContainer<Data>
 
@@ -81,6 +81,7 @@ namespace Intercorso1 {
 
         // Destructor
         // ~PreOrderMappableContainer() specifiers
+        virtual ~PreOrderMappableContainer() = default;
 
         /* ************************************************************************ */
 
@@ -105,21 +106,24 @@ namespace Intercorso1 {
         // Specific member function
 
         // using typename MappableContainer<Data>::MapFun;
+        using typename MappableContainer<Data>::MapFun;
 
         // type PreOrderMap(argument) specifiers;
+        virtual void PreOrderMap(const MapFun) = 0;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from MappableContainer)
 
         // type Map(argument) specifiers; // Override MappableContainer member
+        void Map(const MapFun) override;
 
     };
 
 /* ************************************************************************** */
 
     template<typename Data>
-    class PostOrderMappableContainer : public MappableContainer<Data>, public PostOrderTraversableContainer<Data>{
+    class PostOrderMappableContainer : virtual public MappableContainer<Data>, virtual public PostOrderTraversableContainer<Data>{
         // Must extend MappableContainer<Data>,
         //             PostOrderTraversableContainer<Data>
 
@@ -135,6 +139,7 @@ namespace Intercorso1 {
 
         // Destructor
         // ~PostOrderMappableContainer() specifiers
+        virtual ~PostOrderMappableContainer() = default;
 
         /* ************************************************************************ */
 
@@ -159,14 +164,17 @@ namespace Intercorso1 {
         // Specific member function
 
         // using typename MappableContainer<Data>::MapFun;
+        using typename MappableContainer<Data>::MapFun;
 
         // type PostOrderMap(argument) specifiers;
+        virtual void PostOrderMap(const MapFun) = 0;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from MappableContainer)
 
         // type Map(argument) specifiers; // Override MappableContainer member
+        void Map(const MapFun) override;
 
     };
 

@@ -11,6 +11,7 @@ namespace Intercorso1 {
 /* ************************************************************************** */
 
     template<typename Data>
+    //In dictionary non ci sono elementi ripetuti
     class DictionaryContainer : virtual public TestableContainer<Data> {
         // Must extend TestableContainer<Data>
 
@@ -67,7 +68,7 @@ namespace Intercorso1 {
         inline virtual bool InsertAll(MappableContainer<Data> &&);
 
         // type RemoveAll(argument) specifiers; // From TraversableContainer; True if all are removed
-        inline virtual bool RemoveAll(TraversableContainer<Data> &);
+        inline virtual bool RemoveAll( TraversableContainer<Data> &);
 
         // type InsertSome(argument) specifiers; // Copy of the value; From TraversableContainer; True if some is inserted
         inline virtual bool InsertSome(const TraversableContainer<Data> &);

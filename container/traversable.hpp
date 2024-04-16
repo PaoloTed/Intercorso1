@@ -32,13 +32,13 @@ namespace Intercorso1 {
 
         // Destructor
         // ~TraversableContainer() specifiers
+        virtual ~TraversableContainer() = default;
 
         /* ************************************************************************ */
 
         // Copy assignment
         // type operator=(argument); // Copy assignment of abstract types is not possible.
-        TraversableContainer &
-        operator=(const TraversableContainer &) = delete;// delete indica che la funzione non puo' essere chiamata
+        TraversableContainer &operator=(const TraversableContainer &) = delete;// delete indica che la funzione non puo' essere chiamata
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
@@ -114,43 +114,37 @@ namespace Intercorso1 {
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types might be possible.
-        bool operator==(const PreOrderTraversableContainer &) const
-
-        noexcept = delete;
+        bool operator==(const PreOrderTraversableContainer &) const noexcept = delete;
 
         // type operator!=(argument) specifiers; // Comparison of abstract types might be possible.
-        bool operator!=(const PreOrderTraversableContainer &) const
-
-        noexcept = delete;
+        bool operator!=(const PreOrderTraversableContainer &) const noexcept = delete;
 
         /* ************************************************************************ */
 
         // Specific member function
 
         // using typename TraversableContainer<Data>::TraverseFun;
-        template<typename Accumulator>
-        using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
-
+        using typename TraversableContainer<Data>::TraverseFun;
         // type PreOrderTraverse(arguments) specifiers;
-        virtual void PreOrderTraverse() const = 0;
+        virtual void PreOrderTraverse(TraverseFun) const = 0;
 
         // template <typename Accumulator>
         // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
 
+        template <typename Accumulator>
+        using FoldFun = typename TraversableContainer<Data>::template FoldFun<Accumulator>;
         // template <typename Accumulator>
         // type PreOrderFold(arguments) specifiers;
         template<typename Accumulator>
         inline Accumulator PreOrderFold(FoldFun<Accumulator>, Accumulator) const;
-
-        using TraverseFun = std::function<void(const Data &)>;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from TraversableContainer)
 
         // type Traverse(arguments) specifiers; // Override TraversableContainer member
-        void Traverse(TraverseFun) const override;
+        inline void Traverse(TraverseFun) const override;
 
     };
 
@@ -198,16 +192,16 @@ namespace Intercorso1 {
         // Specific member function
 
         // using typename TraversableContainer<Data>::TraverseFun;
+        using typename TraversableContainer<Data>::TraverseFun;
 
         // type PostOrderTraverse(arguments) specifiers;
-        inline void PostOrderTraverse(typename TraversableContainer<Data>::TraverseFun) const;
+        inline void PostOrderTraverse(TraverseFun) const = 0;
 
 
         // template <typename Accumulator>
         // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
-        template<typename Accumulator>
-        using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
-        using TraverseFun = std::function<void(const Data &)>;
+        template<class Accumulator>
+        using FoldFun = typename TraversableContainer<Data>::template FoldFun<Accumulator>;
 
         // template <typename Accumulator>
         // type PostOrderFold(arguments) specifiers;
