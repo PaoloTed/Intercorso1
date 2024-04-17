@@ -198,21 +198,27 @@ namespace Intercorso1 {
         using typename TraversableContainer<Data>::TraverseFun;
 
         // type Traverse(arguments) specifiers; // Override TraversableContainer member
-        void Traverse(TraverseFun) const override;
+        void Traverse(TraverseFun fun) const override{
+            PreOrderTraverse(fun);
+        }
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from PreOrderTraversableContainer)
 
         // type PreOrderTraverse(arguments) specifiers; // Override PreOrderTraversableContainer member
-        void PreOrderTraverse(TraverseFun) const override;
+        void PreOrderTraverse(TraverseFun fun) const override{
+            PreOrderTraverse(fun, head);
+        }
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from PostOrderTraversableContainer)
 
         // type PostOrderTraverse(arguments) specifiers; // Override PostOrderTraversableContainer member
-        void PostOrderTraverse(TraverseFun) const override;
+        void PostOrderTraverse(TraverseFun fun) const override{
+            PostOrderTraverse(fun, head);
+        }
 
         /* ************************************************************************ */
 
@@ -223,25 +229,38 @@ namespace Intercorso1 {
         using typename MappableContainer<Data>::MapFun;
 
         // type Map(argument) specifiers; // Override MappableContainer member
-        void Map(const MapFun) override;
+        void Map(const MapFun fun) override{
+            PreOrderMap(fun);
+        }
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from PreOrderMappableContainer)
 
         // type PreOrderMap(argument) specifiers; // Override PreOrderMappableContainer member
-        void PreOrderMap(const MapFun) override;
+        void PreOrderMap(const MapFun fun) override{
+            PreOrderMap(fun, head);
+        }
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from PostOrderMappableContainer)
 
         // type PostOrderMap(argument) specifiers; // Override PostOrderMappableContainer member
-        void PostOrderMap(const MapFun) override;
+        void PostOrderMap(const MapFun fun) override{
+            PostOrderMap(fun, head);
+        }
 
     protected:
 
         // Auxiliary functions, if necessary!
+        void PreOrderTraverse(TraverseFun fun, Node *node) const;
+
+        void PostOrderTraverse(TraverseFun fun, Node *node) const;
+
+        void PreOrderMap(MapFun fun, Node *node) const;
+
+        void PostOrderMap(MapFun fun, Node *node) const;
 
     };
 

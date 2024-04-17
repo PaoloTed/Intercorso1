@@ -171,6 +171,17 @@ namespace Intercorso1 {
     }
 
     template<typename Data>
+    SortableVector<Data>::SortableVector(const SortableVector<Data> &sorVec) {
+        Vector<Data>::Vector(sorVec);
+    }
+
+    template<typename Data>
+    SortableVector<Data>::SortableVector(SortableVector<Data> &&sorVec) noexcept {
+        Vector<Data>::Vector(std::move(sorVec));
+    }
+
+
+    template<typename Data>
     SortableVector<Data>& SortableVector<Data>::operator=(const SortableVector<Data> & sorVec) {
         Vector<Data>::operator=(sorVec);
         return *this;
