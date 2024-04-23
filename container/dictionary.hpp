@@ -84,6 +84,7 @@ namespace lasd {
 
 }
 
+#include "dictionary.cpp"
 
 
 #endif

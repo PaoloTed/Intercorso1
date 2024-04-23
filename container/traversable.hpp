@@ -13,6 +13,7 @@
 /* ************************************************************************** */
 
 namespace lasd {
+    using namespace lasd;
 
 /* ************************************************************************** */
 
@@ -38,7 +39,8 @@ namespace lasd {
 
         // Copy assignment
         // type operator=(argument); // Copy assignment of abstract types is not possible.
-        TraversableContainer &operator=(const TraversableContainer &) = delete;// delete indica che la funzione non puo' essere chiamata
+        TraversableContainer &
+        operator=(const TraversableContainer &) = delete;// delete indica che la funzione non puo' essere chiamata
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
@@ -48,7 +50,8 @@ namespace lasd {
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types might be possible.
-        bool operator==(const TraversableContainer &) const noexcept = delete;// perche' delete se sopra dice che potrebbe essere possibile?
+        bool operator==(
+                const TraversableContainer &) const noexcept = delete;// perche' delete se sopra dice che potrebbe essere possibile?
 
         // type operator!=(argument) specifiers; // Comparison of abstract types might be possible.
         bool operator!=(const TraversableContainer &) const noexcept = delete;
@@ -125,6 +128,7 @@ namespace lasd {
 
         // using typename TraversableContainer<Data>::TraverseFun;
         using typename TraversableContainer<Data>::TraverseFun;
+
         // type PreOrderTraverse(arguments) specifiers;
         virtual void PreOrderTraverse(TraverseFun) const = 0;
 
@@ -132,8 +136,9 @@ namespace lasd {
         // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
 
-        template <typename Accumulator>
+        template<typename Accumulator>
         using FoldFun = typename TraversableContainer<Data>::template FoldFun<Accumulator>;
+
         // template <typename Accumulator>
         // type PreOrderFold(arguments) specifiers;
         template<typename Accumulator>

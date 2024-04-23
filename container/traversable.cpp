@@ -1,12 +1,12 @@
-namespace lasd {
 
+namespace lasd {
 
 /* ************************************************************************** */
 
     template<typename Data>
     template<typename Accumulator>
     // type Fold(arguments) specifiers;
-    Accumulator TraversableContainer<Data>::Fold(FoldFun<Accumulator> fun, Accumulator acc) const {
+    Accumulator TraversableContainer<Data>::Fold(FoldFun <Accumulator> fun, Accumulator acc) const {
         Traverse(
                 [&acc, fun](const Data &data) {
                     acc = fun(data, acc);
@@ -40,7 +40,8 @@ namespace lasd {
 
     template<typename Data>
     template<typename Accumulator>
-    inline Accumulator PreOrderTraversableContainer<Data>::PreOrderFold(FoldFun<Accumulator> fun, Accumulator acc) const {
+    inline Accumulator
+    PreOrderTraversableContainer<Data>::PreOrderFold(FoldFun <Accumulator> fun, Accumulator acc) const {
         PreOrderTraverse(
                 [&acc, fun](const Data &data) {
                     acc = fun(data, acc);
@@ -60,7 +61,8 @@ namespace lasd {
 
     template<typename Data>
     template<typename Accumulator>
-    inline Accumulator PostOrderTraversableContainer<Data>::PostOrderFold(FoldFun<Accumulator> fun, Accumulator acc) const {
+    inline Accumulator
+    PostOrderTraversableContainer<Data>::PostOrderFold(FoldFun <Accumulator> fun, Accumulator acc) const {
         PostOrderTraverse(
                 [&acc, fun](const Data &data) {
                     acc = fun(data, acc);
