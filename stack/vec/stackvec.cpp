@@ -1,5 +1,5 @@
 #include "stackvec.hpp"
-namespace Intercorso1 {
+namespace lasd {
 
 /* ************************************************************************** */
 

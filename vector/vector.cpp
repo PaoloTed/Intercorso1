@@ -1,8 +1,7 @@
 #include "vector.hpp"
 #include <stdexcept>
 
-using namespace Intercorso1;
-namespace Intercorso1 {
+namespace lasd {
 
     template<typename Data>
     Vector<Data>::Vector(const unsigned long size_vett) {

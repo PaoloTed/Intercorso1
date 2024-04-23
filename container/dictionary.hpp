@@ -3,10 +3,9 @@
 #define DICTIONARY_HPP
 
 /* ************************************************************************** */
-#include "testable.hpp"
 /* ************************************************************************** */
-
-namespace Intercorso1 {
+#include "mappable.hpp"
+namespace lasd {
 
 /* ************************************************************************** */
 
@@ -85,6 +84,6 @@ namespace Intercorso1 {
 
 }
 
-#include "dictionary.cpp"
+
 
 #endif

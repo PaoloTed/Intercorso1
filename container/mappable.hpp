@@ -7,12 +7,11 @@
 #include <functional>
 
 /* ************************************************************************** */
-
 #include "traversable.hpp"
 
 /* ************************************************************************** */
 
-namespace Intercorso1 {
+namespace lasd {
 
 /* ************************************************************************** */
 
@@ -235,7 +234,7 @@ namespace Intercorso1 {
 /* ************************************************************************** */
 
     template<typename Data>
-    class BreadthMappableContainer : public MappableContainer<Data>, public BreadthTraversableContainer<Data>
+    class BreadthMappableContainer : public MappableContainer<Data>, public BreadthTraversableContainer<Data>{
         // Must extend MappableContainer<Data>,
         //             BreadthTraversableContainer<Data>
 

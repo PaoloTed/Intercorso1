@@ -1,11 +1,5 @@
 
-#include "traversable.hpp"
-#include "mappable.hpp"
-#include "dictionary.hpp"
-
-namespace Intercorso1 {
-
-
+namespace lasd {
 /* ************************************************************************** */
 
     template<typename Data>

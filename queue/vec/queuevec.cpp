@@ -1,6 +1,6 @@
 #include "queuevec.hpp"
 
-namespace Intercorso1 {
+namespace lasd {
 
 /* ************************************************************************** */
 

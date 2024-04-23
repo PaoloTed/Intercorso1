@@ -1,7 +1,7 @@
-#include "linear.hpp"
-#include <stdexcept>
 
-namespace Intercorso1 {
+#include <stdexcept>
+#
+namespace lasd {
 
 /* ************************************************************************** */
 
