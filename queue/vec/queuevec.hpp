@@ -26,7 +26,7 @@ namespace Intercorso1 {
 
         // using Vector<Data>::???;
         using Container::size;
-        using Vector<Data>::elements;
+        using Vector<Data>::Elements;
 
         unsigned long head{0}, tail{0};
 
@@ -118,7 +118,7 @@ namespace Intercorso1 {
 
         // type Size() specifiers; // Override Container member
         unsigned long Size() const override {
-            return (tail - head + size) % size;
+            return ((size + tail) - head) % size;
         }
 
         /* ************************************************************************ */
@@ -128,7 +128,7 @@ namespace Intercorso1 {
         // type Clear() specifiers; // Override ClearableContainer member
         void Clear() override ;
 
-        void Resize(unsigned long new_size);
+        void Resize(unsigned long new_size, unsigned long num);
 
         void Reduce();
 
