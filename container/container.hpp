@@ -38,7 +38,6 @@ namespace lasd {
 
         /* ************************************************************************ */
 
-        //TODO : si devono fare ?
 
         // Copy assignment
         // type operator=(argument); // Copy assignment of abstract types is not possible.
