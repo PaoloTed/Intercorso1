@@ -13,81 +13,111 @@ namespace Intercorso1 {
 
 /* ************************************************************************** */
 
-template <typename Data>
-class StackLst {
-  // Must extend Stack<Data>,
-  //             List<Data>
+    template<typename Data>
+    class StackLst : virtual public Stack<Data>, virtual protected List<Data> {
+        // Must extend Stack<Data>,
+        //             List<Data>
 
-private:
+    private:
 
-  // ...
+        // ...
 
-protected:
+    protected:
 
-  // using List<Data>::???;
+        // using List<Data>::???;
 
-  // ...
+        // ...
 
-public:
+    public:
 
-  // Default constructor
-  // StackLst() specifier;
+        // Default constructor
+        // StackLst() specifier;
+        StackLst() = default;
 
-  /* ************************************************************************ */
+        /* ************************************************************************ */
 
-  // Specific constructor
-  // StackLst(argument) specifiers; // A stack obtained from a TraversableContainer
-  // StackLst(argument) specifiers; // A stack obtained from a MappableContainer
+        // Specific constructor
+        // StackLst(argument) specifiers; // A stack obtained from a TraversableContainer
+        StackLst(const TraversableContainer<Data> &traCon) : List<Data>::List(traCon) {};
 
-  /* ************************************************************************ */
+        // StackLst(argument) specifiers; // A stack obtained from a MappableContainer
+        StackLst(MappableContainer<Data> &&mapCon) : List<Data>::List(std::move(mapCon)) {};
 
-  // Copy constructor
-  // StackLst(argument);
+        /* ************************************************************************ */
 
-  // Move constructor
-  // StackLst(argument);
+        // Copy constructor
+        // StackLst(argument);
+        StackLst(const StackLst &s) : List<Data>::List(s) {};
 
-  /* ************************************************************************ */
+        // Move constructor
+        // StackLst(argument);
+        StackLst(StackLst &&s) : List<Data>::List(std::move(s)) {};
 
-  // Destructor
-  // ~StackLst() specifier;
+        /* ************************************************************************ */
 
-  /* ************************************************************************ */
+        // Destructor
+        // ~StackLst() specifier;
+        virtual ~StackLst() = default;
 
-  // Copy assignment
-  // type operator=(argument);
+        /* ************************************************************************ */
 
-  // Move assignment
-  // type operator=(argument);
+        // Copy assignment
+        // type operator=(argument);
+        StackLst &operator=(const StackLst &stk) {
+            List<Data>::operator=(stk);
+            return *this;
+        }
 
-  /* ************************************************************************ */
+        // Move assignment
+        // type operator=(argument);
+        StackLst &operator=(StackLst &&stk) noexcept {
+            List<Data>::operator=(std::move(stk));
+            return *this;
+        }
 
-  // Comparison operators
-  // type operator==(argument) specifiers;
-  // type operator!=(argument) specifiers;
+        /* ************************************************************************ */
 
-  /* ************************************************************************ */
+        // Comparison operators
+        // type operator==(argument) specifiers;
+        bool operator==(const StackLst &stk) const noexcept { return List<Data>::operator==(stk); }
 
-  // Specific member functions (inherited from Stack)
+        // type operator!=(argument) specifiers;
+        bool operator!=(const StackLst &stk) const noexcept { return List<Data>::operator!=(stk); }
 
-  // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
-  // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
-  // type Pop() specifiers; // Override Stack member (must throw std::length_error when empty)
-  // type TopNPop() specifiers; // Override Stack member (must throw std::length_error when empty)
-  // type Push(argument) specifiers; // Override Stack member (copy of the value)
-  // type Push(argument) specifiers; // Override Stack member (move of the value)
+        /* ************************************************************************ */
 
-  /* ************************************************************************ */
+        // Specific member functions (inherited from Stack)
 
-  // Specific member function (inherited from ClearableContainer)
+        // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
+        const Data &Top() const override { return List<Data>::Front(); }
 
-  // using List<Data>::Clear;
+        // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
+        Data &Top() override { return List<Data>::Front(); }
 
-protected:
+        // type Pop() specifiers; // Override Stack member (must throw std::length_error when empty)
+        void Pop() override { List<Data>::RemoveFromFront(); }
 
-  // Auxiliary functions, if necessary!
+        // type TopNPop() specifiers; // Override Stack member (must throw std::length_error when empty)
+        Data TopNPop() override { return List<Data>::FrontNRemove(); }
 
-};
+        // type Push(argument) specifiers; // Override Stack member (copy of the value)
+        void Push(const Data &data) override { List<Data>::InsertAtFront(data); }
+
+        // type Push(argument) specifiers; // Override Stack member (move of the value)
+        void Push(Data &&data) override { List<Data>::InsertAtFront(std::move(data)); }
+
+        /* ************************************************************************ */
+
+        // Specific member function (inherited from ClearableContainer)
+
+        // using List<Data>::Clear;
+        using List<Data>::Clear;
+
+    protected:
+
+        // Auxiliary functions, if necessary!
+
+    };
 
 /* ************************************************************************** */
 
