@@ -86,7 +86,7 @@ namespace lasd {
         // Specific member function (inherited from ClearableContainer)
 
         // type Clear() specifiers; // Override ClearableContainer member
-        void Clear() override;
+        void Clear() const override;
 
         /* ************************************************************************ */
 
@@ -100,9 +100,9 @@ namespace lasd {
         // Specific member functions (inherited from LinearContainer)
 
         // type operator[](argument) specifiers; // Override (NonMutable) LinearContainer member (must throw std::out_of_range when out of range)
-        const Data &operator[](const unsigned long) const override;
+        const Data &operator[](unsigned int ) const override;
         // type operator[](argument) specifiers; // Override (Mutable) LinearContainer member (must throw std::out_of_range when out of range)
-        Data &operator[](const unsigned long) override;
+        Data &operator[](unsigned int ) override;
 
         // type Front() specifiers; // Override (NonMutable) LinearContainer member (must throw std::length_error when empty)
         const Data &Front() const override;

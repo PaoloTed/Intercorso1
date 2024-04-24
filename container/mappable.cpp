@@ -6,7 +6,7 @@ namespace lasd {
 // ...
 
     //Map implementation for MappableContainer
-    template<typename Data>
+    /*template<typename Data>
     void MappableContainer<Data>::Map(MapFun f) {
         Traverse(
                 [&f](Data &data) {
@@ -14,7 +14,9 @@ namespace lasd {
                 }
         );
     }
+    */
 
+    /*
     //Map implementation for PreOrderMappableContainer
     template<typename Data>
     void PreOrderMappableContainer<Data>::Map(MapFun f) {
@@ -26,6 +28,8 @@ namespace lasd {
     void PostOrderMappableContainer<Data>::Map(MapFun f) {
         PostOrderMap(f);
     }
+
+     */
 
 /* ************************************************************************** */
 

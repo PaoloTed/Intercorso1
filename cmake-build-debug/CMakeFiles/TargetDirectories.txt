@@ -1,2 +1,2 @@
-C:/Users/Paolo Tedesco/OneDrive - Assa Abloy Inc/Desktop/Universita/Secondo Anno/Intercorso1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Paolo Tedesco/OneDrive - Assa Abloy Inc/Desktop/Universita/Secondo Anno/Intercorso1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/vboxuser/CLionProjects/Intercorso1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vboxuser/CLionProjects/Intercorso1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

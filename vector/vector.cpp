@@ -79,7 +79,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    void Vector<Data>::Clear() {
+    void Vector<Data>::Clear() const {
         delete[] Elements;
         size = 0;
         Elements = nullptr;
@@ -102,7 +102,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    const Data &Vector<Data>::operator[](const unsigned long i) const {
+    const Data &Vector<Data>::operator[](unsigned int i) const {
         if (i >= size) {
             throw std::out_of_range("Index out of range");
         }
@@ -110,7 +110,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    Data &Vector<Data>::operator[](const unsigned long i) {
+    Data &Vector<Data>::operator[](unsigned int i) {
         if (i >= size) {
             throw std::out_of_range("Index out of range");
         }

@@ -126,7 +126,7 @@ List <Data> &List<Data>::operator=(const List &list) {
         throw std::length_error("The size of the local list is different from the size of the list to copy");
         }
     }
-}
+
 
     template<typename Data>
     List<Data> &List<Data>::operator=(List &&list) noexcept {
@@ -365,6 +365,8 @@ void List<Data>::PostOrderMap(MapFun fun, Node *node) const {
         PostOrderMap(fun, node->next);
         fun(node->value);
     }
+}
+
 }
 
 

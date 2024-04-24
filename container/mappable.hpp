@@ -57,7 +57,7 @@ namespace lasd {
 
         using MapFun = std::function<void(Data &)>;
 
-        void Map(const MapFun) = 0;
+        virtual void Map(const MapFun) = 0;
 
     };
 
@@ -108,14 +108,16 @@ namespace lasd {
         using typename MappableContainer<Data>::MapFun;
 
         // type PreOrderMap(argument) specifiers;
-        virtual void PreOrderMap(const MapFun) = 0;
+         virtual void PreOrderMap(const MapFun) = 0;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from MappableContainer)
 
         // type Map(argument) specifiers; // Override MappableContainer member
-        void Map(const MapFun) override;
+        void Map(const MapFun fun) override{
+            PreOrderMap(fun);
+        }
 
     };
 
@@ -173,7 +175,9 @@ namespace lasd {
         // Specific member function (inherited from MappableContainer)
 
         // type Map(argument) specifiers; // Override MappableContainer member
-        void Map(const MapFun) override;
+          void Map(const MapFun fun) override{
+            PostOrderMap(fun);
+        }
 
     };
 

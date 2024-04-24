@@ -57,10 +57,10 @@ namespace lasd {
         // Specific member functions
 
         // type operator[](argument) specifiers; // (non-mutable version; concrete function must throw std::out_of_range when out of range)
-        virtual Data &operator[](const unsigned long) const = 0;
+        virtual Data &operator[](const unsigned int) const = 0;
 
         // type operator[](argument) specifiers; // (mutable version; concrete function must throw std::out_of_range when out of range)
-        virtual Data &operator[](const unsigned long) = 0;
+        virtual Data &operator[]( unsigned int) = 0;
 
         // type Front() specifiers; // (non-mutable version; concrete function must throw std::length_error when empty)
         virtual Data &Front() const = 0;

@@ -200,7 +200,7 @@ namespace lasd {
         using typename TraversableContainer<Data>::TraverseFun;
 
         // type PostOrderTraverse(arguments) specifiers;
-        inline void PostOrderTraverse(TraverseFun) const = 0;
+        inline virtual void PostOrderTraverse(TraverseFun) const = 0;
 
 
         // template <typename Accumulator>
