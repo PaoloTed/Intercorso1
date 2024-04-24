@@ -112,7 +112,7 @@ List <Data> &List<Data>::operator=(const List &list) {
             std::swap(*temp, *this);
             delete temp;
             return *this;
-        }else{
+        }else {
             Node *tempOutside = list.head;
             Node *tempLocal = head;
             tempLocal->element = list.head->element;
@@ -120,8 +120,11 @@ List <Data> &List<Data>::operator=(const List &list) {
                 tempLocal->value = tempOutside->value;
                 tempOutside = tempOutside->next;
                 tempLocal = tempLocal->next;
+            }
         }
     } else {
+        throw std::length_error("The size of the local list is different from the size of the list to copy");
+        }
     }
 }
 
@@ -375,4 +378,4 @@ void List<Data>::PostOrderMap(MapFun fun, Node *node) const {
 
 /* ************************************************************************** */
 
-}
+
