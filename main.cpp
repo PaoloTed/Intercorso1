@@ -10,7 +10,7 @@
 /* ************************************************************************** */
 
 int main() {
-    std::cout << "Lasd Libraries 2024" << std::endl;
-    lasdtest();
-    return 0;
+  std::cout << "Lasd Libraries 2024" << std::endl;
+  lasdtest();
+  return 0;
 }
