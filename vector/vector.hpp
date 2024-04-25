@@ -170,6 +170,8 @@ namespace lasd {
         // ~SortableVector() specifiers;
         virtual ~SortableVector() = default;
 
+
+
         /* ************************************************************************ */
 
         // Copy assignment

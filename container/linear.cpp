@@ -26,7 +26,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    Data &LinearContainer<Data>::Front() const {
+    const Data &LinearContainer<Data>::Front() const {
         if (size == 0) {
             throw std::length_error("Empty container");
         }
@@ -42,7 +42,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    Data &LinearContainer<Data>::Back() const {
+    const Data &LinearContainer<Data>::Back() const {
         if (size == 0) {
             throw std::length_error("Empty container");
         }
