@@ -190,4 +190,9 @@ namespace lasd {
         Vector<Data>::operator=(std::move(sorVec));
         return *this;
     }
+
+    template<typename Data>
+    void SortableVector<Data>::Traverse(SortableVector::TraverseFun fun) const {
+        PreOrderTraverse(fun);
+    }
 }

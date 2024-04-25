@@ -166,7 +166,7 @@ namespace lasd {
         // Specific member function (inherited from ClearableContainer)
 
         // type Clear() specifiers; // Override ClearableContainer member
-        void Clear() const override = 0;
+        void Clear() const override ;
 
     };
 

@@ -15,7 +15,7 @@ namespace lasd {
 /* ************************************************************************** */
 
     template<typename Data>
-    class List : virtual public ClearableContainer, public LinearContainer<Data>, public DictionaryContainer<Data> {
+    class List : virtual public ClearableContainer, virtual public LinearContainer<Data>, virtual public DictionaryContainer<Data> {
         // Must extend ClearableContainer,
         //             LinearContainer<Data>,
         //             DictionaryContainer<Data>
@@ -158,7 +158,7 @@ namespace lasd {
         // Specific member function (inherited from ClearableContainer)
 
         // type Clear() specifiers; // Override ClearableContainer member
-        void Clear() override;
+        void Clear() const override;
 
         /* ************************************************************************ */
 

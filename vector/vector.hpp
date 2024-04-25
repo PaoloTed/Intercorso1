@@ -14,7 +14,7 @@ namespace lasd {
 /* ************************************************************************** */
 
     template<typename Data>
-    class Vector : virtual public ResizableContainer, public LinearContainer<Data> {
+    class Vector : virtual public ResizableContainer, virtual public LinearContainer<Data> {
         // Must extend ResizableContainer,
         //             LinearContainer<Data>
 
@@ -170,6 +170,10 @@ namespace lasd {
         // ~SortableVector() specifiers;
         virtual ~SortableVector() = default;
 
+		using typename TraversableContainer<Data>::TraverseFun;
+
+        // type Traverse(argument) specifiers; // Override TraversableContainer member concreta
+        void Traverse(TraverseFun) const override;
 
 
         /* ************************************************************************ */

@@ -47,6 +47,7 @@ namespace lasd {
 
         // Copy constructor
         // StackLst(argument);
+        //todo
         StackLst(const StackLst &s) : List<Data>::List(s) {};
 
         // Move constructor

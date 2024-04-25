@@ -1,4 +1,3 @@
-
 #include <stdexcept>
 namespace lasd {
 
@@ -21,7 +20,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    bool LinearContainer<Data>::operator!=(const LinearContainer<Data> &linCon) const {
+    bool LinearContainer<Data>::operator!=(const LinearContainer<Data> &linCon) const noexcept{
         return !(*this == linCon);
     }
 
@@ -109,8 +108,34 @@ namespace lasd {
 
     template<typename Data>
     void SortableLinearContainer<Data>::Sort() {
-        //TODO
+        QuickSort(0, size - 1);
     }
+
+    template<typename Data>
+    void SortableLinearContainer<Data>::QuickSort(unsigned long left, unsigned long right) {
+        if (left < right) {
+            long pivot = Partition(left, right);
+            QuickSort(left, pivot - 1);
+            QuickSort(pivot + 1, right);
+        }
+    }
+
+    template<typename Data>
+    long SortableLinearContainer<Data>::Partition(unsigned long left, unsigned long right) {
+        Data pivot = (*this)[right];
+        long i = left - 1;
+        for (unsigned long j = left; j < right; j++) {
+            if ((*this)[j] <= pivot) {
+                i++;
+                std::swap((*this)[i], (*this)[j]);
+            }
+        }
+        std::swap((*this)[i + 1], (*this)[right]);
+        return i + 1;
+    }
+
+
+
 
     //Specific member function
     //BubbleSort quicksort etc

@@ -50,7 +50,7 @@ namespace lasd {
         bool operator==(const LinearContainer<Data> &) const noexcept;
 
         // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
-        bool operator!=(const LinearContainer &) const;
+        bool operator!=(const LinearContainer &) const noexcept;
 
         /* ************************************************************************ */
 
@@ -175,9 +175,8 @@ namespace lasd {
 
         // Auxiliary member functions
         //TODO: si devono mettere gli algoritmi di ordinamento ? (es. bubble sort, quick sort, ecc.)
-        void QuickSort(unsigned long, unsigned long);
-        void BubbleSort();
-
+        void QuickSort(unsigned long , unsigned long  );
+        long  Partition(unsigned long , unsigned long  );
         // ...
 
     };

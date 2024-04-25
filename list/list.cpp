@@ -227,7 +227,7 @@ void List<Data>::InsertAtBack(Data &&data) {
 }
 
 template<typename Data>
-void List<Data>::Clear() {
+void List<Data>::Clear() const  {
     size = 0;
     delete head;
     head = tail = nullptr;

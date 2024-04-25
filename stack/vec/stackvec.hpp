@@ -107,17 +107,17 @@ namespace lasd {
         // Specific member functions (inherited from Container)
 
         // type Empty() specifiers; // Override Container member
-        bool Empty() const noexcept override;
+        bool Empty() const override;
 
         // type Size() specifiers; // Override Container member
-        unsigned long Size() const noexcept override;
+        unsigned long Size() const;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from ClearableContainer)
 
         // type Clear() specifiers; // Override ClearableContainer member
-        void Clear() override;
+        void Clear() const override;
 
     protected:
 
