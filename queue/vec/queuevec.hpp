@@ -26,9 +26,9 @@ namespace lasd {
 
         // using Vector<Data>::???;
         using Container::size;
-        using Vector<Data>::Elements;
+        using Vector<Data>::element;
 
-        unsigned long head{0}, tail{0};
+        unsigned int head{0}, tail{0};
 
         // ...
 
@@ -117,7 +117,7 @@ namespace lasd {
         }
 
         // type Size() specifiers; // Override Container member
-        unsigned long Size() const override {
+        unsigned int Size() const override {
             return ((size + tail) - head) % size;
         }
 
@@ -126,9 +126,9 @@ namespace lasd {
         // Specific member function (inherited from ClearableContainer)
 
         // type Clear() specifiers; // Override ClearableContainer member
-        void Clear() const override ;
+        void Clear() override ;
 
-        void Resize(unsigned long new_size, unsigned long num);
+        void Resize(unsigned int new_size, unsigned int num);
 
         void Reduce();
 

@@ -17,7 +17,7 @@ namespace lasd {
     protected:
 
         // ...
-        unsigned long size {0};//intero senza segno
+        unsigned int size {0};//intero senza segno
 
 
         /* ************************************************************************ */
@@ -61,10 +61,15 @@ namespace lasd {
         // Specific member functions
 
         // type Empty() specifiers; // (concrete function should not throw exceptions)
-        virtual bool Empty() const = 0; //virtual...= 0 indica che è una funzione virtuale pura e che deve essere implementata nelle classi derivate
+        virtual bool Empty() const{
+            return size == 0;
+         }
 
         // type Size() specifiers; // (concrete function should not throw exceptions)
-        virtual unsigned Size() const = 0;
+        virtual unsigned Size() const{
+            return size;
+        //virtual...= 0 indica che è una funzione virtuale pura e che deve essere implementata nelle classi derivate
+        };
 
     };
 
@@ -112,7 +117,7 @@ namespace lasd {
         // Specific member functions
 
         // type Clear() specifiers;
-        virtual void Clear() const = 0;
+        virtual void Clear()  = 0;
 
     };
 
@@ -158,7 +163,7 @@ namespace lasd {
         // Specific member functions
 
         // type Resize(argument) specifiers;
-        virtual void Resize(unsigned long) = 0;
+        virtual void Resize(unsigned int) = 0;
 
 
         /* ************************************************************************ */
@@ -166,7 +171,9 @@ namespace lasd {
         // Specific member function (inherited from ClearableContainer)
 
         // type Clear() specifiers; // Override ClearableContainer member
-        void Clear() const override ;
+        void Clear()  override {
+        Resize(0);
+        };
 
     };
 

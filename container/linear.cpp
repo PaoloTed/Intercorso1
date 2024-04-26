@@ -9,7 +9,7 @@ namespace lasd {
     template<typename Data>
     bool LinearContainer<Data>::operator==(const LinearContainer<Data> &linCon) const noexcept {
         if (size == linCon.size) {
-            for (unsigned long i = 0; i < size; i++) {
+            for (unsigned int i = 0; i < size; i++) {
                 if ((*this)[i] != linCon[i]) {
                     return false;
                 }
@@ -63,7 +63,7 @@ namespace lasd {
 
     template<typename Data>
     void LinearContainer<Data>::PreOrderTraverse(LinearContainer::TraverseFun fun) const {
-        for (unsigned long i = 0; i < size; i++) {
+        for (unsigned int i = 0; i < size; i++) {
             fun((*this)[i]);
         }
     }
@@ -82,7 +82,7 @@ namespace lasd {
 
     template<typename Data>
     void LinearContainer<Data>::PreOrderMap(const LinearContainer::MapFun fun) {
-        for (unsigned long i = 0; i < size; i++) {
+        for (unsigned int i = 0; i < size; i++) {
             fun((*this)[i]);
         }
     }
@@ -112,7 +112,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    void SortableLinearContainer<Data>::QuickSort(unsigned long left, unsigned long right) {
+    void SortableLinearContainer<Data>::QuickSort(unsigned int left, unsigned int right) {
         if (left < right) {
             long pivot = Partition(left, right);
             QuickSort(left, pivot - 1);
@@ -121,10 +121,10 @@ namespace lasd {
     }
 
     template<typename Data>
-    long SortableLinearContainer<Data>::Partition(unsigned long left, unsigned long right) {
+    long SortableLinearContainer<Data>::Partition(unsigned int left, unsigned int right) {
         Data pivot = (*this)[right];
         long i = left - 1;
-        for (unsigned long j = left; j < right; j++) {
+        for (unsigned int j = left; j < right; j++) {
             if ((*this)[j] <= pivot) {
                 i++;
                 std::swap((*this)[i], (*this)[j]);

@@ -50,10 +50,10 @@ namespace lasd {
     bool QueueVec<Data>::operator==(const QueueVec &queue) const noexcept {
         if (Size() == queue.Size()) {
 
-            for (unsigned long idx1 = head, unsigned long idx2 = queue.head; idx1<tail; idx1++, idx2++) {
+            for (unsigned int idx1 = head, unsigned int idx2 = queue.head; idx1<tail; idx1++, idx2++) {
                 idx1 %= size;
                 idx2 %= queue.size;
-                if (Elements[idx1] != queue.Elements[idx2]) {
+                if (element[idx1] != queue.element[idx2]) {
                     return false;
                 }
             }
@@ -65,7 +65,7 @@ namespace lasd {
     template<typename Data>
     const Data &QueueVec<Data>::Head() const {
         if (head != tail) {
-            return Elements[head];
+            return element[head];
         } else {
             throw std::length_error("Queue is empty");
         }
@@ -74,7 +74,7 @@ namespace lasd {
     template<typename Data>
     Data &QueueVec<Data>::Head() {
         if (head != tail) {
-            return Elements[head];
+            return element[head];
         } else {
             throw std::length_error("Queue is empty");
         }
@@ -94,7 +94,7 @@ namespace lasd {
     Data QueueVec<Data>::HeadNDequeue() {
         if(head != tail){
             Reduce();
-            Data headEl = std::move(Elements[head]);
+            Data headEl = std::move(element[head]);
             head = (head + 1) % size;
             return std::move(headEl);
         }else{
@@ -105,7 +105,7 @@ namespace lasd {
     template<typename Data>
     void QueueVec<Data>::Enqueue(const Data &data) {
         Expand();
-        Elements[tail] = data;
+        element[tail] = data;
         tail++;
         tail %= size;
     }
@@ -113,7 +113,7 @@ namespace lasd {
     template<typename Data>
     void QueueVec<Data>::Enqueue(Data &&data) {
         Expand();
-        Elements[tail] = std::move(data);
+        element[tail] = std::move(data);
         tail++;
         tail %= size;
     }
@@ -126,17 +126,17 @@ void QueueVec<Data>::Clear() {
 }
 
 template<typename Data>
-void QueueVec<Data>::Resize(unsigned long new_size, unsigned long num){
-    Data *new_elements = new Data[new_size];
+void QueueVec<Data>::Resize(unsigned int new_size, unsigned int num){
+    Data *new_element = new Data[new_size];
     unsigned max = (num<= new_size) ? num : new_size;
-    for (unsigned long indx1 = head, indx2 = 0; indx2 < max; ++indx1 %= size, ++indx2) {
-        new_elements[indx2] = std::move(Elements[indx1]);
+    for (unsigned int indx1 = head, indx2 = 0; indx2 < max; ++indx1 %= size, ++indx2) {
+        new_element[indx2] = std::move(element[indx1]);
     }
 }
 
 template<typename Data>
 void QueueVec<Data>::Reduce() {
-    unsigned long new_size = Size();
+    unsigned int new_size = Size();
     if (new_size + 1 < size / 4) {
         Resize(size / 2, new_size);
     }
@@ -144,7 +144,7 @@ void QueueVec<Data>::Reduce() {
 
 template<typename Data>
 void QueueVec<Data>::Expand() {
-    unsigned long new_size = Size();
+    unsigned int new_size = Size();
     if (new_size +1 == size) {
         Resize(size * 2, new_size);
     }

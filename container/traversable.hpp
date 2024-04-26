@@ -149,7 +149,9 @@ namespace lasd {
         // Specific member function (inherited from TraversableContainer)
 
         // type Traverse(arguments) specifiers; // Override TraversableContainer member
-        inline void Traverse(TraverseFun) const override;
+        inline void Traverse(TraverseFun func) const override{
+            PreOrderTraverse(func);
+        };
 
     };
 

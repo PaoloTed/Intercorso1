@@ -3,42 +3,42 @@
 namespace lasd {
 
     template<typename Data>
-    Vector<Data>::Vector(const unsigned long size_vett) {
-        size_vett = size;
-        Elements = new Data[size_vett]();
+    Vector<Data>::Vector(const unsigned int size_vett) {
+        size = size_vett;
+        element = new Data[size_vett]();
     }
 
     template<typename Data>
     Vector<Data>::Vector(const TraversableContainer<Data> &container) {
         Vector(container.Size());
-        unsigned long i{0};
+        unsigned int i{0};
         container.Traverse([&i, this](const Data &data) {
-            Elements[i++] = data;
+            element[i++] = data;
         });
     }
 
     template<typename Data>
     Vector<Data>::Vector(MappableContainer<Data> &&container) {
         Vector(container.Size());
-        unsigned long i{0};
+        unsigned int i{0};
         container.Map([&i, this](Data &data) {
-            Elements[i++] = std::move(data);
+            element[i++] = std::move(data);
         });
     }
 
     template<typename Data>
     Vector<Data>::Vector(const Vector<Data> &vector) {
         size = vector.size;
-        Elements = new Data[size]{};
-        for (unsigned long i = 0; i < size; i++) {
-            Elements[i] = vector.Elements[i];
+        element = new Data[size]{};
+        for (unsigned int i = 0; i < size; i++) {
+            element[i] = vector.element[i];
         }
     }
 
     template<typename Data>
     Vector<Data>::Vector(Vector<Data> &&vector) noexcept {
         std::swap(size, vector.size);
-        std::swap(Elements, vector.Elements);
+        std::swap(element, vector.element);
     }
 
     template<typename Data>
@@ -52,7 +52,7 @@ namespace lasd {
     template<typename Data>
     Vector<Data> &Vector<Data>::operator=(Vector<Data> &&vector) {
         std::swap(size, vector.size);
-        std::swap(Elements, vector.Elements);
+        std::swap(element, vector.element);
         return *this;
     }
 
@@ -62,8 +62,8 @@ namespace lasd {
             return true;
         }
         if (size == vector.size) {
-            for (unsigned long i = 0; i < size; i++) {
-                if (Elements[i] != vector.Elements[i]) {
+            for (unsigned int i = 0; i < size; i++) {
+                if (element[i] != vector.element[i]) {
                     return false;
                 }
             }
@@ -79,25 +79,25 @@ namespace lasd {
     }
 
     template<typename Data>
-    void Vector<Data>::Clear() const {
-        delete[] Elements;
+    void Vector<Data>::Clear()  {
+        delete[] element;
         size = 0;
-        Elements = nullptr;
+        element = nullptr;
     }
 
     template<typename Data>
-    void Vector<Data>::Resize(const unsigned long new_size) {
+    void Vector<Data>::Resize(const unsigned int new_size) {
         if (new_size == 0) {
             Clear();
         } else if (size != new_size) {
-            Data *new_elements = new Data[new_size]{};
-            unsigned long min_size = (size < new_size) ? size : new_size;
-            for (unsigned long i = 0; i < min_size; i++) {
-                std::swap(new_elements[i], Elements[i]);
+            Data *new_element = new Data[new_size]{};
+            unsigned int min_size = (size < new_size) ? size : new_size;
+            for (unsigned int i = 0; i < min_size; i++) {
+                std::swap(new_element[i], element[i]);
             }
-            std::swap(Elements, new_elements);
+            std::swap(element, new_element);
             size = new_size;
-            delete[] new_elements;
+            delete[] new_element;
         }
     }
 
@@ -106,7 +106,7 @@ namespace lasd {
         if (i >= size) {
             throw std::out_of_range("Index out of range");
         }
-        return Elements[i];
+        return element[i];
     }
 
     template<typename Data>
@@ -114,7 +114,7 @@ namespace lasd {
         if (i >= size) {
             throw std::out_of_range("Index out of range");
         }
-        return Elements[i];
+        return element[i];
     }
 
     template<typename Data>
@@ -122,7 +122,7 @@ namespace lasd {
         if (size == 0) {
             throw std::length_error("Empty vector");
         }
-        return Elements[0];
+        return element[0];
     }
 
     template<typename Data>
@@ -130,7 +130,7 @@ namespace lasd {
         if (size == 0) {
             throw std::length_error("Empty vector");
         }
-        return Elements[0];
+        return element[0];
     }
 
     template<typename Data>
@@ -138,7 +138,7 @@ namespace lasd {
         if (size == 0) {
             throw std::length_error("Empty vector");
         }
-        return Elements[size - 1];
+        return element[size - 1];
     }
 
     template<typename Data>
@@ -146,15 +146,16 @@ namespace lasd {
         if (size == 0) {
             throw std::length_error("Empty vector");
         }
-        return Elements[size - 1];
+        return element[size - 1];
     }
 
 /* ************************************************************************** */
 
 //SortableVector Implementation
 
+    /*
     template<typename Data>
-    SortableVector<Data>::SortableVector(const unsigned long size) {
+    SortableVector<Data>::SortableVector(const unsigned int size) {
         Vector<Data>::Vector(size);
     }
 
@@ -168,6 +169,8 @@ namespace lasd {
         Vector<Data>::Vector(std::move(container));
     }
 
+
+
     template<typename Data>
     SortableVector<Data>::SortableVector(const SortableVector<Data> &sorVec) {
         Vector<Data>::Vector(sorVec);
@@ -177,6 +180,8 @@ namespace lasd {
     SortableVector<Data>::SortableVector(SortableVector<Data> &&sorVec) noexcept {
         Vector<Data>::Vector(std::move(sorVec));
     }
+
+     */
 
 
     template<typename Data>

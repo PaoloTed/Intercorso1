@@ -175,8 +175,8 @@ namespace lasd {
 
         // Auxiliary member functions
         //TODO: si devono mettere gli algoritmi di ordinamento ? (es. bubble sort, quick sort, ecc.)
-        void QuickSort(unsigned long , unsigned long  );
-        long  Partition(unsigned long , unsigned long  );
+        void QuickSort(unsigned int , unsigned int  );
+        long  Partition(unsigned int , unsigned int  );
         // ...
 
     };

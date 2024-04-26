@@ -32,10 +32,13 @@ namespace lasd {
     /* ************************************************************************ */
     //PreOrderTraversableContainer member functions implementation
 
+/*
     template<typename Data>
     void PreOrderTraversableContainer<Data>::Traverse(TraverseFun fun) const {
-        PreOrderFold(fun);
+        PreOrderTraverse(fun);
     }
+
+ */
 
     template<typename Data>
     template<typename Accumulator>
@@ -55,7 +58,7 @@ namespace lasd {
 
     template<typename Data>
     void PostOrderTraversableContainer<Data>::Traverse(TraverseFun fun) const {
-        PostOrderFold(fun);
+        PostOrderTraverse(fun);
     }
 
     template<typename Data>

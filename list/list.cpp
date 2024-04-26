@@ -66,7 +66,7 @@ List<Data>::List(const TraversableContainer <Data> &container) {
 template<typename Data>
 List<Data>::List(MappableContainer <Data> &&container) {
     container.Map(
-            [this](Data &&data) {
+            [this](Data &data) {
                 InsertAtBack(std::move(data));
             }
     );
@@ -115,7 +115,7 @@ List <Data> &List<Data>::operator=(const List &list) {
         }else {
             Node *tempOutside = list.head;
             Node *tempLocal = head;
-            tempLocal->element = list.head->element;
+            tempLocal->value = list.head->value;
             while (tempOutside != nullptr) {
                 tempLocal->value = tempOutside->value;
                 tempOutside = tempOutside->next;
@@ -227,7 +227,7 @@ void List<Data>::InsertAtBack(Data &&data) {
 }
 
 template<typename Data>
-void List<Data>::Clear() const  {
+void List<Data>::Clear()   {
     size = 0;
     delete head;
     head = tail = nullptr;
@@ -280,24 +280,24 @@ bool List<Data>::Remove(const Data &data) {
 }
 
 template<typename Data>
-const Data &List<Data>::operator[](const unsigned long index) const {
+const Data &List<Data>::operator[]( unsigned int index) const {
     if (index >= size) {
         throw std::out_of_range("The index is out of range");
     }
     Node *temp = head;
-    for (unsigned long i = 0; i < index; ++i) {
+    for (unsigned int i = 0; i < index; ++i) {
         temp = temp->next;
     }
     return temp->value;
 }
 
 template<typename Data>
-Data &List<Data>::operator[](const unsigned long index) {
+Data &List<Data>::operator[]( unsigned int index) {
     if (index >= size) {
         throw std::out_of_range("The index is out of range");
     }
     Node *temp = head;
-    for (unsigned long i = 0; i < index; ++i) {
+    for (unsigned int i = 0; i < index; ++i) {
         temp = temp->next;
     }
     return temp->value;

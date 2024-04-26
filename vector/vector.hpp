@@ -25,7 +25,7 @@ namespace lasd {
     protected:
 
         // using Container::???;
-        Data *Elements = nullptr;
+        Data *element = nullptr;
         using Container::size;
 
         // ...
@@ -39,7 +39,7 @@ namespace lasd {
 
         // Specific constructors
         // Vector(argument) specifiers; // A vector with a given initial dimension
-        Vector(const unsigned long);
+        Vector(const unsigned int);
 
         // Vector(argument) specifiers; // A vector obtained from a TraversableContainer
         Vector(const TraversableContainer<Data> &);
@@ -86,14 +86,14 @@ namespace lasd {
         // Specific member function (inherited from ClearableContainer)
 
         // type Clear() specifiers; // Override ClearableContainer member
-        void Clear() const override;
+        void Clear()  override;
 
         /* ************************************************************************ */
 
         // Specific member function (inherited from ResizableContainer)
 
         // type Resize(argument) specifiers; // Override ResizableContainer member
-        void Resize(const unsigned long) override;
+        void Resize(const unsigned int) override;
 
         /* ************************************************************************ */
 
@@ -148,21 +148,21 @@ namespace lasd {
 
         // Specific constructors
         // SortableVector(argument) specifiers; // A vector with a given initial dimension
-        SortableVector(const unsigned long );
+        SortableVector(const unsigned int dim): Vector<Data>::Vector(dim){};
         // SortableVector(argument) specifiers; // A vector obtained from a TraversableContainer
-        SortableVector(const TraversableContainer<Data> &);
+        SortableVector(const TraversableContainer<Data> &traCon): Vector<Data>::Vector(traCon){};
         // SortableVector(argument) specifiers; // A vector obtained from a MappableContainer
-        SortableVector( MappableContainer<Data> &&);
+        SortableVector( MappableContainer<Data> &&mapCon): Vector<Data>::Vector(mapCon){};
 
         /* ************************************************************************ */
 
         // Copy constructor
         // SortableVector(argument) specifiers;
-        SortableVector(const SortableVector &);
+        SortableVector(const SortableVector &sorVec): Vector<Data>::Vector(sorVec){};
 
         // Move constructor
         // SortableVector(argument) specifiers;
-        SortableVector(SortableVector &&) noexcept;
+        SortableVector(SortableVector &&sorVec) noexcept : Vector<Data>::Vector(sorVec){};
 
         /* ************************************************************************ */
 

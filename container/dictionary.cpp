@@ -43,7 +43,7 @@ namespace lasd {
     template<typename Data>
     inline bool DictionaryContainer<Data>::InsertSome(const TraversableContainer<Data> &container) {
         bool inserted = false;
-        container.Map(
+        container.Traverse(
                 [this,&inserted](const Data &data) {
                     inserted = Insert(data) || inserted;//Controllo OR tra il valore di inserted e il risultato della funzione Insert
                 }

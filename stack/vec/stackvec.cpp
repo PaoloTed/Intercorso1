@@ -25,8 +25,8 @@ StackVec<Data> &StackVec<Data>::operator=(StackVec<Data> &&s) noexcept {
 template <typename Data>
 bool StackVec<Data>::operator==(const StackVec<Data> &s) const noexcept {
     if (index == s.index) {
-        for (unsigned long i = 0; i < index; i++) {
-            if (Elements[i] != s.Elements[i]) {
+        for (unsigned int i = 0; i < index; i++) {
+            if (element[i] != s.element[i]) {
                 return false;
             }
         }
@@ -44,7 +44,7 @@ const Data &StackVec<Data>::Top() const {
     if (index == 0) {
         throw std::length_error("Stack is empty");
     }
-    return Elements[index - 1];
+    return element[index - 1];
 }
 
 template <typename Data>
@@ -52,7 +52,7 @@ Data &StackVec<Data>::Top() {
     if (index == 0) {
         throw std::length_error("Stack is empty");
     }
-    return Elements[index - 1];
+    return element[index - 1];
 }
 
 template <typename Data>
@@ -69,7 +69,7 @@ template <typename Data>
 Data StackVec<Data>::TopNPop() {
     if(index != 0) {
         Reduce();
-        return std::move(Elements[--index]);
+        return std::move(element[--index]);
     } else {
         throw std::length_error("Stack is empty");
     }
@@ -78,13 +78,13 @@ Data StackVec<Data>::TopNPop() {
 template <typename Data>
 void StackVec<Data>::Push(const Data &d) {
     Expand();
-    Elements[index++] = d;
+    element[index++] = d;
 }
 
 template <typename Data>
 void StackVec<Data>::Push(Data &&d) {
     Expand();
-    Elements[index++] = std::move(d);
+    element[index++] = std::move(d);
 }
 
 template <typename Data>
@@ -93,7 +93,7 @@ bool StackVec<Data>::Empty() const {
 }
 
 template <typename Data>
-unsigned long StackVec<Data>::Size() const {
+unsigned int StackVec<Data>::Size() const {
     return index;
 }
 
