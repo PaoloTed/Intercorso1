@@ -196,8 +196,11 @@ namespace lasd {
         return *this;
     }
 
+/*
     template<typename Data>
     void SortableVector<Data>::Traverse(SortableVector::TraverseFun fun) const {
-        PreOrderTraverse(fun);
+        yhisPreOrderTraverse(fun);
     }
+
+ */
 }

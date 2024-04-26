@@ -121,6 +121,8 @@ List <Data> &List<Data>::operator=(const List &list) {
                 tempOutside = tempOutside->next;
                 tempLocal = tempLocal->next;
             }
+            tail = tempLocal;
+            return *this;
         }
     } else {
         throw std::length_error("The size of the local list is different from the size of the list to copy");
@@ -191,7 +193,6 @@ Data List<Data>::FrontNRemove() {
     if (size == 0) {
         throw std::length_error("The list is empty");
     }
-    if (head != nullptr) {
         Node *temp = head;
         head = head->next;
         temp->next = nullptr;
@@ -199,7 +200,7 @@ Data List<Data>::FrontNRemove() {
         delete temp;
         --size;
         return value;
-    }
+
 }
 
 template<typename Data>

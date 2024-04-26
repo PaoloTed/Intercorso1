@@ -61,7 +61,9 @@ namespace lasd {
 
         // Destructor
         // ~Vector() specifiers;
-        ~Vector();
+        ~Vector(){
+            delete[] element;
+        }
 
         /* ************************************************************************ */
 
@@ -170,11 +172,13 @@ namespace lasd {
         // ~SortableVector() specifiers;
         virtual ~SortableVector() = default;
 
+/*
 		using typename TraversableContainer<Data>::TraverseFun;
 
         // type Traverse(argument) specifiers; // Override TraversableContainer member concreta
         void Traverse(TraverseFun) const override;
 
+        */
 
         /* ************************************************************************ */
 

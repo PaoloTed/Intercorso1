@@ -32,6 +32,7 @@ bool StackVec<Data>::operator==(const StackVec<Data> &s) const noexcept {
         }
         return true;
     }
+    return false;
 }
 
 template <typename Data>
@@ -106,14 +107,14 @@ void StackVec<Data>::Clear() {
 template <typename Data>
 void StackVec<Data>::Expand() {
     if (index == size) {
-        Resize(size * 2);
+        Vector<Data>::Resize(size * 2);
     }
 }
 
 template <typename Data>
 void StackVec<Data>::Reduce() {
     if (index + 1 < size / 4) {
-        Resize(size / 2);
+        Vector<Data>::Resize(size / 2);
     }
 }
 /* ************************************************************************** */

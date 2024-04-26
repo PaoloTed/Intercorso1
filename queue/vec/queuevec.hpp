@@ -36,9 +36,8 @@ namespace lasd {
 
         // Default constructor
         // QueueVec() specifier;
-        QueueVec() {
-            Vector<Data>::Vector(5);
-        }
+
+        QueueVec() ;
 
         /* ************************************************************************ */
 

@@ -36,7 +36,7 @@ namespace lasd {
 
         // Default constructor
         // StackVec() specifier;
-        StackVec() : Vector<Data>::Vector(1) {};
+        StackVec() : Vector<Data>::Vector(5) {};
 
         /* ************************************************************************ */
 

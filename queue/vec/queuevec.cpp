@@ -4,15 +4,18 @@ namespace lasd {
 /* ************************************************************************** */
 
 // ...
+
     template<typename Data>
-    QueueVec<Data>::QueueVec(const TraversableContainer<Data> &traCon) : Vector<Data>(traCon) {
-        tail(size);
+    QueueVec<Data>::QueueVec(): Vector<Data>::Vector<Data>(4) {}
+    template<typename Data>
+    QueueVec<Data>::QueueVec(const TraversableContainer<Data> &traCon) : Vector<Data>(traCon){
+        tail = traCon.Size();
         Vector<Data>::Resize(size * 2);
     }
 
     template<typename Data>
     QueueVec<Data>::QueueVec(MappableContainer<Data> &&mapCon) : Vector<Data>(std::move(mapCon)) {
-        tail(size);
+        tail(mapCon.Size());
         Vector<Data>::Resize(size * 2);
     }
 
@@ -50,7 +53,7 @@ namespace lasd {
     bool QueueVec<Data>::operator==(const QueueVec &queue) const noexcept {
         if (Size() == queue.Size()) {
 
-            for (unsigned int idx1 = head, unsigned int idx2 = queue.head; idx1<tail; idx1++, idx2++) {
+            for (unsigned int idx1 = head, idx2 = queue.head; idx1<tail; idx1++, idx2++) {
                 idx1 %= size;
                 idx2 %= queue.size;
                 if (element[idx1] != queue.element[idx2]) {
@@ -92,14 +95,9 @@ namespace lasd {
 
     template<typename Data>
     Data QueueVec<Data>::HeadNDequeue() {
-        if(head != tail){
-            Reduce();
-            Data headEl = std::move(element[head]);
-            head = (head + 1) % size;
-            return std::move(headEl);
-        }else{
-            throw std::length_error("Queue is empty");
-        }
+        Data temp = Head();
+        Dequeue();
+        return temp;
     }
 
     template<typename Data>

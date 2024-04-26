@@ -25,6 +25,7 @@ namespace lasd {
     protected:
 
         // using List<Data>::???;
+        using List<Data>::size;
 
         // ...
 
@@ -38,9 +39,8 @@ namespace lasd {
 
         // Specific constructor
         // QueueLst(argument) specifiers; // A stack obtained from a TraversableContainer
-        QueueLst(const TraversableContainer<Data> &traCon){
-            List<Data>::List(traCon);
-        }
+        QueueLst(const TraversableContainer<Data> &traCon) : List<Data>::List(traCon){
+       }
 
         // QueueLst(argument) specifiers; // A stack obtained from a MappableContainer
         QueueLst(MappableContainer<Data> && mapCon){
@@ -51,15 +51,13 @@ namespace lasd {
 
         // Copy constructor
         // QueueLst(argument);
-            QueueLst(const QueueLst & que){
-            List<Data>::List(que);
+            QueueLst(const QueueLst & que) :List<Data>::List(que){
         }
 
         // Move constructor
         // QueueLst(argument);
-        QueueLst(QueueLst && que) noexcept{
-            List<Data>::List(std::move(que));
-            };
+        QueueLst(QueueLst && que) noexcept :List<Data>::List(std::move(que)){}
+
 
         /* ************************************************************************ */
 
