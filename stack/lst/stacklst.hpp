@@ -100,7 +100,7 @@ namespace lasd {
         // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
         Data &Top() override {
             if(size==0)
-                throw std::length_error("Stack is empty");
+                throw std::length_error("Stack is empty ");
             return List<Data>::Front(); }
 
         // type Pop() specifiers; // Override Stack member (must throw std::length_error when empty)
