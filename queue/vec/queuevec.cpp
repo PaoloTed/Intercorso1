@@ -11,14 +11,14 @@ namespace lasd {
     QueueVec<Data>::QueueVec(const TraversableContainer<Data> &traCon) : Vector<Data>(traCon){
         numElement = traCon.Size();
         tail = traCon.Size();
-        Vector<Data>::Resize(size * 2);
+        Resize(size * 2,size);
     }
 
     template<typename Data>
     QueueVec<Data>::QueueVec(MappableContainer<Data> &&mapCon) : Vector<Data>(std::move(mapCon)) {
         numElement = mapCon.Size();
         tail(mapCon.Size());
-        Vector<Data>::Resize(size * 2);
+        Resize(size * 2,size);
     }
 
 
@@ -92,7 +92,7 @@ namespace lasd {
     template<typename Data>
     void QueueVec<Data>::Dequeue() {
         if (head != tail) {
-            Reduce();
+            //Reduce();
             head = (head + 1) % size;
         } else {
             throw std::length_error("Queue is empty");
@@ -152,8 +152,14 @@ void QueueVec<Data>::Resize(unsigned int new_size, unsigned int num){
     Data *new_element = new Data[new_size];
     unsigned max = (num<= new_size) ? num : new_size;
     for (unsigned int indx1 = head, indx2 = 0; indx2 < max; ++indx1 %= size, ++indx2) {
-        new_element[indx2] = std::move(element[indx1]);
+        new_element[indx2] = element[indx1];
     }
+    std::swap(element, new_element);
+    delete[] new_element;
+    size = new_size;
+    head = 0;
+    tail = num;
+
 }
 
 template<typename Data>
@@ -167,9 +173,7 @@ void QueueVec<Data>::Reduce() {
 template<typename Data>
 void QueueVec<Data>::Expand() {
     unsigned int new_size = Size();
-    if (new_size +1 == size) {
-        Resize(size * 2, new_size);
-    }
+     Resize(size * 2, new_size);
 }
 
 /* ************************************************************************** */

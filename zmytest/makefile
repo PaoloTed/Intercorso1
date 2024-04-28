@@ -13,7 +13,6 @@ libexc1a = $(libexc) vector/vector.cpp vector/vector.hpp list/list.cpp list/list
 libexc1aMy = $(libexcMy) vector/vector.cpp vector/vector.hpp list/list.cpp list/list.hpp
 
 libexc1b = $(libexc1a) stack/stack.hpp stack/lst/stacklst.cpp stack/lst/stacklst.hpp stack/vec/stackvec.cpp stack/vec/stackvec.hpp queue/queue.hpp queue/lst/queuelst.cpp queue/lst/queuelst.hpp queue/vec/queuevec.cpp queue/vec/queuevec.hpp
-libexc1bMy = $(libexc1aMy) stack/stack.hpp stack/lst/stacklst.cpp stack/lst/stacklst.hpp stack/vec/stackvec.cpp stack/vec/stackvec.hpp queue/queue.hpp queue/lst/queuelst.cpp queue/lst/queuelst.hpp queue/vec/queuevec.cpp queue/vec/queuevec.hpp
 
 main: $(objects)
 	$(cc) $(cflags) $(objects) -o main
@@ -47,10 +46,10 @@ exc1bf.o: $(libexc1b) zlasdtest/exercise1b/fulltest.cpp
 
 
 
-exc1asMy.o: $(libexc1aMy) zmytest/exercise1a/simpletest.cpp
+exc1asMy.o: $(libexc1a) zmytest/exercise1a/simpletest.cpp
 	$(cc) $(cflags) -c zmytest/exercise1a/simpletest.cpp -o exc1asMy.o
 
-exc1bsMy.o: $(libexc1bMy) zmytest/exercise1b/simpletest.cpp
+exc1bsMy.o: $(libexc1b) zmytest/exercise1b/simpletest.cpp
 	$(cc) $(cflags) -c zmytest/exercise1b/simpletest.cpp -o exc1bsMy.o
 
 

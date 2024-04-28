@@ -178,6 +178,7 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
   unsigned int loctestnum = 0, loctesterr = 0;
   cout << endl << "Begin of List<int> Test:" << endl;
   try {
+
     lasd::List<int> lst;
 
     Empty(loctestnum, loctesterr, lst, true);
@@ -195,7 +196,6 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
 
     RemoveFromFront(loctestnum, loctesterr, lst, false);
     FrontNRemove(loctestnum, loctesterr, lst, false, 0);
-
     InsertAtBack(loctestnum, loctesterr, lst, true, 4);
     InsertAtFront(loctestnum, loctesterr, lst, true, 5);
     InsertAtFront(loctestnum, loctesterr, lst, true, 9);
@@ -206,8 +206,7 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
     GetBack(loctestnum, loctesterr, lst, true, 2);
     SetFront(loctestnum, loctesterr, lst, true, 2);
     SetBack(loctestnum, loctesterr, lst, true, 6);
-    //old 1
-    //old 2
+
     GetAt(loctestnum, loctesterr, lst, true, 3, 4);
     SetAt(loctestnum, loctesterr, lst, true, 3, 3);
 
@@ -221,17 +220,10 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
     RemoveFromFront(loctestnum, loctesterr, lst, true);
     FrontNRemove(loctestnum, loctesterr, lst, true, 9);
     FoldPostOrder(loctestnum, loctesterr, lst, true, &FoldMultiply<int>, 1, 90);
-
-    //check
-
-
     lasd::List<int> coplst(lst);
     EqualList(loctestnum, loctesterr, lst, coplst, true);
     MapPreOrder(loctestnum, loctesterr, lst, true, &MapIncrement<int>);
     NonEqualList(loctestnum, loctesterr, lst, coplst, true);
-
-
-
     InsertAtFront(loctestnum, loctesterr, lst, true, 0);
     InsertAtBack(loctestnum, loctesterr, lst, true, 0);
     NonEqualList(loctestnum, loctesterr, lst, coplst, true);
