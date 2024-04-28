@@ -70,8 +70,8 @@ namespace lasd {
 
     template<typename Data>
     void LinearContainer<Data>::PostOrderTraverse(LinearContainer::TraverseFun fun) const {
-        for ( long i = size - 1; i >= 0; i--) {
-            fun((*this)[i]);
+        for ( long i = size; i > 0;) {
+            fun((*this)[--i]);
         }
     }
 
@@ -107,7 +107,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    void SortableLinearContainer<Data>::Sort() {
+    void SortableLinearContainer<Data>::Sort() noexcept{
         QuickSort(0, size - 1);
     }
 

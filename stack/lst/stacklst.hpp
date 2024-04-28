@@ -25,6 +25,7 @@ namespace lasd {
     protected:
 
         // using List<Data>::???;
+        using Container::size;
 
         // ...
 
@@ -90,16 +91,31 @@ namespace lasd {
         // Specific member functions (inherited from Stack)
 
         // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
-        const Data &Top() const override { return List<Data>::Front(); }
+        const Data &Top() const override {
+            if(size==0)
+                throw std::length_error("Stack is empty");
+            return List<Data>::Front();
+        }
 
         // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
-        Data &Top() override { return List<Data>::Front(); }
+        Data &Top() override {
+            if(size==0)
+                throw std::length_error("Stack is empty");
+            return List<Data>::Front(); }
 
         // type Pop() specifiers; // Override Stack member (must throw std::length_error when empty)
-        void Pop() override { List<Data>::RemoveFromFront(); }
+        void Pop() override {
+            if(size==0)
+                throw std::length_error("Stack is empty");
+            List<Data>::RemoveFromFront();
+        }
 
         // type TopNPop() specifiers; // Override Stack member (must throw std::length_error when empty)
-        Data TopNPop() override { return List<Data>::FrontNRemove(); }
+        Data TopNPop() override {
+            if(size==0)
+                throw std::length_error("Stack is empty");
+            return List<Data>::FrontNRemove();
+        }
 
         // type Push(argument) specifiers; // Override Stack member (copy of the value)
         void Push(const Data &data) override { List<Data>::InsertAtFront(data); }

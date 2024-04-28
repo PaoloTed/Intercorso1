@@ -1,5 +1,5 @@
 #include <stdexcept>
-
+#include <iostream>
 namespace lasd {
 
     template<typename Data>
@@ -9,10 +9,10 @@ namespace lasd {
     }
 
     template<typename Data>
-    Vector<Data>::Vector(const TraversableContainer<Data> &container) {
-        Vector(container.Size());
+    Vector<Data>::Vector(const TraversableContainer<Data> &container) : Vector(container.Size()){
+        //Vector(container.Size());
         unsigned int i{0};
-        container.Traverse([&i, this](const Data &data) {
+        container.Traverse([this, &i](const Data &data) {
             element[i++] = data;
         });
     }
@@ -22,14 +22,14 @@ namespace lasd {
         Vector(container.Size());
         unsigned int i{0};
         container.Map([&i, this](Data &data) {
-            element[i++] = std::move(data);
+            std::swap(element[i++], data);
         });
     }
 
     template<typename Data>
     Vector<Data>::Vector(const Vector<Data> &vector) {
         size = vector.size;
-        element = new Data[size]{};
+        element = new Data[size];
         for (unsigned int i = 0; i < size; i++) {
             element[i] = vector.element[i];
         }
@@ -43,14 +43,14 @@ namespace lasd {
 
     template<typename Data>
     Vector<Data> &Vector<Data>::operator=(const Vector<Data> &vector) {
-        Vector<Data> *temp = new Vector<Data>(vector);
-        std::swap(*temp, *this);
-        delete temp;
+        Vector<Data> temp(vector);
+        std::swap(temp, *this);
+
         return *this;
     }
 
     template<typename Data>
-    Vector<Data> &Vector<Data>::operator=(Vector<Data> &&vector) {
+    Vector<Data> &Vector<Data>::operator=(Vector<Data> &&vector) noexcept {
         std::swap(size, vector.size);
         std::swap(element, vector.element);
         return *this;

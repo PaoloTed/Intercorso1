@@ -30,6 +30,8 @@ namespace lasd {
 
         unsigned int head{0}, tail{0};
 
+        unsigned int numElement{0};
+
         // ...
 
     public:
@@ -111,14 +113,10 @@ namespace lasd {
         // Specific member functions (inherited from Container)
 
         // type Empty() specifiers; // Override Container member
-        bool Empty() const override {
-            return (head == tail);
-        }
+        bool Empty() const noexcept override ;
 
         // type Size() specifiers; // Override Container member
-        unsigned int Size() const override {
-            return ((size + tail) - head) % size;
-        }
+        unsigned int Size() const noexcept override ;
 
         /* ************************************************************************ */
 

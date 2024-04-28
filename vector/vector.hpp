@@ -73,7 +73,7 @@ namespace lasd {
 
         // Move assignment
         // type operator=(argument) specifiers;
-        Vector &operator=(Vector &&);
+        Vector &operator=(Vector &&) noexcept;
 
         /* ************************************************************************ */
 

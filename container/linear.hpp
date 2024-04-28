@@ -41,7 +41,7 @@ namespace lasd {
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
-        LinearContainer &operator=(LinearContainer &&) = delete;
+        LinearContainer &operator=(LinearContainer &&) noexcept = delete;
 
         /* ************************************************************************ */
 
@@ -150,11 +150,11 @@ namespace lasd {
 
         // Copy assignment
         // type operator=(argument); // Copy assignment of abstract types is not possible.
-        SortableLinearContainer &operator=(const SortableLinearContainer &) = delete;
+        SortableLinearContainer &operator=(const SortableLinearContainer &) noexcept = delete;
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not be possible.
-        SortableLinearContainer &operator=(SortableLinearContainer &&) = delete;
+        SortableLinearContainer &operator=(SortableLinearContainer &&) noexcept = delete;
 
         /* ************************************************************************ */
 
@@ -169,7 +169,7 @@ namespace lasd {
         // Specific member function
 
         // type Sort() specifiers;
-        void Sort();
+        void Sort() noexcept;
 
     protected:
 

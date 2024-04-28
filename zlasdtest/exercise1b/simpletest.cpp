@@ -335,7 +335,9 @@ void stestQueueString(unsigned int & testnum, unsigned int & testerr) {
     EnqueueM(loctestnum, loctesterr, quevec, string("A"));
     EnqueueM(loctestnum, loctesterr, quevec, string("B"));
     lasd::QueueVec<string> newquevec(vec);
+    cout << "1" << endl;
     EqualQueue(loctestnum, loctesterr, quevec, newquevec, true);
+    cout << "2" << endl;
 
     EnqueueM(loctestnum, loctesterr, quelst, string("A"));
     EnqueueM(loctestnum, loctesterr, quelst, string("B"));
@@ -367,3 +369,5 @@ void testSimpleExercise1B(unsigned int & testnum, unsigned int & testerr) {
   stestQueue(testnum, testerr);
   cout << endl << "Exercise 1B (Simple Test) (Errors/Tests: " << testerr << "/" << testnum << ")" << endl;
 }
+
+/* ************************************************************************** */

@@ -9,7 +9,7 @@ namespace lasd {
     }
 
     template<typename Data>
-    List<Data>::Node::Node(Data &&valueInsert) {
+    List<Data>::Node::Node(Data &&valueInsert) noexcept {
         std::swap(value, valueInsert);
     }
 
@@ -31,7 +31,7 @@ List<Data>::Node::~Node() {
 
 //Two nodes are equal if they have the same value and the same next nodes
 template<typename Data>
-bool List<Data>::Node::operator==(const Node &node) const {
+bool List<Data>::Node::operator==(const Node &node) const noexcept{
     Node *temp1 = next;
     Node *temp2 = node.next;
 
@@ -50,7 +50,7 @@ bool List<Data>::Node::operator==(const Node &node) const {
 }
 
 template<typename Data>
-bool List<Data>::Node::operator!=(const Node &node) const {
+bool List<Data>::Node::operator!=(const Node &node) const noexcept {
     return !(*this == node);
 }
 
@@ -140,7 +140,7 @@ List <Data> &List<Data>::operator=(const List &list) {
 
 //given that == operator is defined in Node class, we can use it to compare two lists
 template<typename Data>
-bool List<Data>::operator==(const List &list) const {
+bool List<Data>::operator==(const List &list) const noexcept{
     if (size == list.size) {
         return *head == *list.head;
     }
@@ -148,7 +148,7 @@ bool List<Data>::operator==(const List &list) const {
 }
 
 template<typename Data>
-bool List<Data>::operator!=(const List &list) const {
+bool List<Data>::operator!=(const List &list) const noexcept {
     return !(*this == list);
 }
 
@@ -201,16 +201,17 @@ Data List<Data>::FrontNRemove() {
         --size;
         return value;
 
+
 }
 
 template<typename Data>
 void List<Data>::InsertAtBack(const Data &data) {
     Node *temp = new Node(data);
-    if (tail != nullptr) {
+    if(size == 0){
+        head = tail = temp;
+    }else{
         tail->next = temp;
         tail = temp;
-    } else {
-        head = tail = temp;
     }
     ++size;
 }
@@ -218,11 +219,11 @@ void List<Data>::InsertAtBack(const Data &data) {
 template<typename Data>
 void List<Data>::InsertAtBack(Data &&data) {
     Node *temp = new Node(std::move(data));
-    if (tail != nullptr) {
+    if(size == 0){
+        head = tail = temp;
+    }else{
         tail->next = temp;
         tail = temp;
-    } else {
-        head = tail = temp;
     }
     ++size;
 }

@@ -42,10 +42,10 @@ namespace lasd {
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator==(const DictionaryContainer &) const = delete;
+        bool operator==(const DictionaryContainer &) const noexcept = delete;
 
         // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-        bool operator!=(const DictionaryContainer &) const = delete;
+        bool operator!=(const DictionaryContainer &) const  noexcept = delete;
 
         /* ************************************************************************ */
 

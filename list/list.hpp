@@ -46,7 +46,7 @@ namespace lasd {
             // ...
             Node(const Data &);
 
-            Node(Data &&);
+            Node(Data &&) noexcept;
 
             /* ********************************************************************** */
 
@@ -68,9 +68,9 @@ namespace lasd {
 
             // Comparison operators
             // ...
-            bool operator==(const Node &) const;
+            bool operator==(const Node &) const noexcept;
 
-            bool operator!=(const Node &) const;
+            bool operator!=(const Node &) const noexcept;
 
             /* ********************************************************************** */
 
@@ -132,9 +132,9 @@ namespace lasd {
 
         // Comparison operators
         // type operator==(argument) specifiers;
-        bool operator==(const List &) const;
+        bool operator==(const List &) const noexcept;
         // type operator!=(argument) specifiers;
-        bool operator!=(const List &) const;
+        bool operator!=(const List &) const noexcept;
 
         /* ************************************************************************ */
 

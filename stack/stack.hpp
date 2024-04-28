@@ -38,7 +38,7 @@ namespace lasd {
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
-        Stack &operator=(Stack &&) = delete;
+        Stack &operator=(Stack &&) noexcept = delete;
 
         /* ************************************************************************ */
 

@@ -35,7 +35,7 @@ namespace lasd {
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
-        TestableContainer &operator=(TestableContainer &&) = delete;
+        TestableContainer &operator=(TestableContainer &&) noexcept = delete;
 
         /* ************************************************************************ */
 

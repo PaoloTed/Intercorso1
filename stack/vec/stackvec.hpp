@@ -107,10 +107,10 @@ namespace lasd {
         // Specific member functions (inherited from Container)
 
         // type Empty() specifiers; // Override Container member
-        bool Empty() const override;
+        bool Empty() const noexcept override;
 
         // type Size() specifiers; // Override Container member
-        unsigned int Size() const;
+        unsigned int Size()  const noexcept override;
 
         /* ************************************************************************ */
 
@@ -120,6 +120,8 @@ namespace lasd {
         void Clear() override;
 
     protected:
+
+//TODO:: expand reduce in master non ci sono
 
         // Auxiliary functions, if necessary!
         void Expand();

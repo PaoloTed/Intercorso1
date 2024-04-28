@@ -85,12 +85,12 @@ namespace lasd {
 
         // Comparison operators
         // type operator==(argument) specifiers;
-        bool operator==(const QueueLst & que) const{
+        bool operator==(const QueueLst & que) const noexcept{
             return List<Data>::operator==(que);
         }
 
         // type operator!=(argument) specifiers;
-        bool operator!=(const QueueLst & que) const{
+        bool operator!=(const QueueLst & que) const noexcept{
             return List<Data>::operator!=(que);
         }
 
@@ -100,24 +100,36 @@ namespace lasd {
 
         // type Head() specifiers; // Override Queue member (non-mutable version; must throw std::length_error when empty)
         Data &Head() override{
+            if(List<Data>::Empty()){
+                throw std::length_error("Queue is empty");
+            }
             return List<Data>::Front();
         }
 
         // type Head() specifiers; // Override Queue member (mutable version; must throw std::length_error when empty)
         const Data &Head() const override{
+            if(List<Data>::Empty()){
+                throw std::length_error("Queue is empty");
+            }
             return List<Data>::Front();
         }
         // type Dequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
         void Dequeue() override{
+            if(List<Data>::Empty()){
+                throw std::length_error("Queue is empty");
+            }
             List<Data>::RemoveFromFront();
         }
         // type HeadNDequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
         Data HeadNDequeue() override{
+            if(List<Data>::Empty()){
+                throw std::length_error("Queue is empty");
+            }
             return List<Data>::FrontNRemove();
         }
         // type Enqueue(argument) specifiers; // Override Queue member (copy of the value)
         void Enqueue(const Data &d) override{
-            List<Data>::InsertAtBack(d);}
+            return List<Data>::InsertAtBack(d);}
         // type Enqueue(argument) specifiers; / Override Queue member (move of the value)
         void Enqueue(Data &&d) override{
             List<Data>::InsertAtBack(std::move(d));

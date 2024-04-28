@@ -89,12 +89,12 @@ void StackVec<Data>::Push(Data &&d) {
 }
 
 template <typename Data>
-bool StackVec<Data>::Empty() const {
+bool StackVec<Data>::Empty() const noexcept {
     return index == 0;
 }
 
 template <typename Data>
-unsigned int StackVec<Data>::Size() const {
+unsigned int StackVec<Data>::Size() const  noexcept{
     return index;
 }
 

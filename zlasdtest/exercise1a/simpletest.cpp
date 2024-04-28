@@ -179,6 +179,7 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
   cout << endl << "Begin of List<int> Test:" << endl;
   try {
     lasd::List<int> lst;
+
     Empty(loctestnum, loctesterr, lst, true);
     Size(loctestnum, loctesterr, lst, true, 0);
 
@@ -205,7 +206,8 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
     GetBack(loctestnum, loctesterr, lst, true, 2);
     SetFront(loctestnum, loctesterr, lst, true, 2);
     SetBack(loctestnum, loctesterr, lst, true, 6);
-
+    //old 1
+    //old 2
     GetAt(loctestnum, loctesterr, lst, true, 3, 4);
     SetAt(loctestnum, loctesterr, lst, true, 3, 3);
 
@@ -220,10 +222,15 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
     FrontNRemove(loctestnum, loctesterr, lst, true, 9);
     FoldPostOrder(loctestnum, loctesterr, lst, true, &FoldMultiply<int>, 1, 90);
 
+    //check
+
+
     lasd::List<int> coplst(lst);
     EqualList(loctestnum, loctesterr, lst, coplst, true);
     MapPreOrder(loctestnum, loctesterr, lst, true, &MapIncrement<int>);
     NonEqualList(loctestnum, loctesterr, lst, coplst, true);
+
+
 
     InsertAtFront(loctestnum, loctesterr, lst, true, 0);
     InsertAtBack(loctestnum, loctesterr, lst, true, 0);
@@ -234,8 +241,10 @@ void stestListInt(unsigned int & testnum, unsigned int & testerr) {
     RemoveFromFront(loctestnum, loctesterr, coplst, true);
     FrontNRemove(loctestnum, loctesterr, coplst, true, 6);
     coplst = move(lst);
+
     FoldPreOrder(loctestnum, loctesterr, lst, true, &FoldAdd<int>, 0, 11);
     FoldPreOrder(loctestnum, loctesterr, coplst, true, &FoldAdd<int>, 0, 17);
+
 
     lasd::List<int> movlst(move(lst));
     MapPreOrder(loctestnum, loctesterr, movlst, true, &MapIncrement<int>);
@@ -371,8 +380,12 @@ void stestVectorListInt(unsigned int & testnum, unsigned int & testerr) {
 
     EqualLinear(loctestnum, loctesterr, vec, lst, true);
 
+
     lasd::SortableVector<int> copvec(lst);
+
+
     EqualVector(loctestnum, loctesterr, vec, copvec, true);
+
     lasd::SortableVector<int> copvecx(vec);
     EqualVector(loctestnum, loctesterr, copvecx, copvec, true);
 

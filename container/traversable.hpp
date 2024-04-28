@@ -44,7 +44,7 @@ namespace lasd {
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
-        TraversableContainer &operator=(TraversableContainer &&) = delete;
+        TraversableContainer &operator=(TraversableContainer &&) noexcept = delete;
 
         /* ************************************************************************ */
 
@@ -111,7 +111,7 @@ namespace lasd {
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
-        PreOrderTraversableContainer &operator=(PreOrderTraversableContainer &&) = delete;
+        PreOrderTraversableContainer &operator=(PreOrderTraversableContainer &&) noexcept = delete;
 
         /* ************************************************************************ */
 
@@ -183,7 +183,7 @@ namespace lasd {
 
         // Move assignment
         // type operator=(argument); // Move assignment of abstract types is not possible.
-        PostOrderTraversableContainer &operator=(PostOrderTraversableContainer &&) = delete;
+        PostOrderTraversableContainer &operator=(PostOrderTraversableContainer &&) noexcept = delete;
 
         /* ************************************************************************ */
 
@@ -240,11 +240,13 @@ namespace lasd {
 
     public:
 
+
         // Destructor
         // ~InOrderTraversableContainer() specifiers
 
         /* ************************************************************************ */
 
+        /*
         // Copy assignment
         // type operator=(argument); // Copy assignment of abstract types is not possible.
         InOrderTraversableContainer &operator=(const InOrderTraversableContainer &) = delete;
@@ -253,7 +255,6 @@ namespace lasd {
         // type operator=(argument); // Move assignment of abstract types is not possible.
         InOrderTraversableContainer &operator=(InOrderTraversableContainer &&) = delete;
 
-        /* ************************************************************************ */
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types might be possible.
@@ -261,6 +262,7 @@ namespace lasd {
 
         // type operator!=(argument) specifiers; // Comparison of abstract types might be possible.
         bool operator!=(const InOrderTraversableContainer &) const noexcept = delete;
+        */
 
         /* ************************************************************************ */
 
