@@ -10,7 +10,7 @@ namespace lasd {
 
     template<typename Data>
     List<Data>::Node::Node(Data &&valueInsert) noexcept {
-        std::swap(value, valueInsert);
+        std::swap(valueInsert, value);
     }
 
     template<typename Data>
@@ -20,8 +20,8 @@ namespace lasd {
 
     template<typename Data>
     List<Data>::Node::Node(Node &&node) noexcept {
-        std::swap(value, node.value);
-        std::swap(next, node.next);
+        std::swap(node.value, value);
+        std::swap(node.ext, next);
     }
 
 template<typename Data>
@@ -32,6 +32,10 @@ List<Data>::Node::~Node() {
 //Two nodes are equal if they have the same value and the same next nodes
 template<typename Data>
 bool List<Data>::Node::operator==(const Node &node) const noexcept{
+/*
+    if (value != node.value) {
+        return false;
+    }
     Node *temp1 = next;
     Node *temp2 = node.next;
 
@@ -47,6 +51,9 @@ bool List<Data>::Node::operator==(const Node &node) const noexcept{
         return true;
     }
     return false;
+
+ */
+ return value == node.value;
 }
 
 template<typename Data>
@@ -72,6 +79,7 @@ List<Data>::List(MappableContainer <Data> &&container) {
     );
 }
 
+//da controllare
 template<typename Data>
 List<Data>::List(const List <Data> &list) {
     if (size == list.size) {
@@ -91,19 +99,19 @@ List<Data>::List(const List <Data> &list) {
     }
 }
 
-    template<typename Data>
-    List<Data>::List(List &&list) noexcept {
-        std::swap(size, list.size);
-        std::swap(head, list.head);
-        std::swap(tail, list.tail);
-    }
+template<typename Data>
+List<Data>::List(List &&list) noexcept {
+    std::swap(size, list.size);
+    std::swap(head, list.head);
+    std::swap(tail, list.tail);
+}
 
 template<typename Data>
 List<Data>::~List() {
     delete head;
 }
 
-//TODO:: vedere master per implementazione corretta
+//da controllare
 template<typename Data>
 List <Data> &List<Data>::operator=(const List &list) {
     if (size <= list.size) {
@@ -124,21 +132,22 @@ List <Data> &List<Data>::operator=(const List &list) {
             tail = tempLocal;
             return *this;
         }
-    } else {
+    }else {
         throw std::length_error("The size of the local list is different from the size of the list to copy");
-        }
     }
+}
 
 
-    template<typename Data>
-    List<Data> &List<Data>::operator=(List &&list) noexcept {
-        std::swap(size, list.size);
-        std::swap(head, list.head);
-        std::swap(tail, list.tail);
-        return *this;
-    }
+template<typename Data>
+List<Data> &List<Data>::operator=(List &&list) noexcept {
+    std::swap(size, list.size);
+    std::swap(head, list.head);
+    std::swap(tail, list.tail);
+    return *this;
+}
 
-//given that == operator is defined in Node class, we can use it to compare two lists
+
+//da controllare
 template<typename Data>
 bool List<Data>::operator==(const List &list) const noexcept{
     if (size == list.size) {
@@ -174,6 +183,7 @@ void List<Data>::InsertAtFront(Data &&data) {
     ++size;
 }
 
+//da controllare
 template<typename Data>
 void List<Data>::RemoveFromFront() {
     if (size == 0) {

@@ -6,7 +6,12 @@ namespace lasd {
 // ...
 
     template<typename Data>
-    QueueVec<Data>::QueueVec(): Vector<Data>::Vector<Data>(4) {}
+    QueueVec<Data>::QueueVec(): Vector<Data>::Vector<Data>(4) {
+        std::cout << "QueueVec()" << std::endl;
+        head = 0;
+        tail = 0;
+        numElement = 0;
+    }
     template<typename Data>
     QueueVec<Data>::QueueVec(const TraversableContainer<Data> &traCon) : Vector<Data>(traCon){
         numElement = traCon.Size();
@@ -57,6 +62,7 @@ namespace lasd {
 
     template<typename Data>
     bool QueueVec<Data>::operator==(const QueueVec &queue) const noexcept {
+    std::cout << "Size() == queue.Size() " << Size() << " == " << queue.Size() << std::endl;
         if (Size() == queue.Size()) {
 
             for (unsigned int idx1 = head, idx2 = queue.head; idx1<tail; idx1++, idx2++) {
@@ -110,7 +116,9 @@ namespace lasd {
     void QueueVec<Data>::Enqueue(const Data &data) {
         if (numElement == size) {
             Expand();
+            std::cout << "Expand" << std::endl;
         }
+        std::cout << numElement << std::endl;
         element[tail] = data;
         tail++;
         tail %= size;
@@ -121,7 +129,9 @@ namespace lasd {
     void QueueVec<Data>::Enqueue(Data &&data) {
         if (numElement == size) {
             Expand();
+            std::cout << "Expand" << std::endl;
         }
+        std::cout << "numero elementi quevec " << numElement << std::endl;
         element[tail] = std::move(data);
         tail++;
         tail %= size;

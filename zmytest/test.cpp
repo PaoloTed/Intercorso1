@@ -11,7 +11,7 @@ using namespace std;
 /* ************************************************************************** */
 
 void mytest() {
-  cout << endl << "~*~#~*~ Welcome to the LASD Test My Suite Paolo Tedesco~*~#~*~ " << endl;
+  cout << endl << "~*~#~*~ Welcome to the LASD Test My Suite Paolo Tedesco Esercizio 1 ~*~#~*~ " << endl;
 
   unsigned int loctestnum, loctesterr;
   unsigned int stestnum = 0, stesterr = 0;
